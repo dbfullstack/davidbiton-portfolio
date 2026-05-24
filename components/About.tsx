@@ -1,18 +1,18 @@
 const pillars = [
   {
     icon: "◆",
-    title: "Architect",
-    body: "I design and lead production systems where compliance, scale, and developer experience all need to be true at once. Microservices, event-driven backends, multi-tenant SaaS.",
+    title: "Lead",
+    body: "I run engineering teams that ship — setting technical direction, removing blockers, hiring well, and protecting focus. I've grown teams from a handful of engineers into multi-squad orgs without losing velocity.",
   },
   {
     icon: "▲",
     title: "Automate",
-    body: "I build the AI tooling that makes engineering teams faster. Agentic workflows, AI-driven PR review, custom skills and commands deployed across an entire org.",
+    body: "I build the AI tooling that makes engineering faster — shared Claude Code workspaces, automated PR review pipelines, custom skills and agents. Deployed across 120+ repositories.",
   },
   {
     icon: "●",
-    title: "Ship",
-    body: "Cross-platform mobile (iOS, Android, Flutter, React Native), DevOps pipelines, internal developer platforms. Built to be boring in production and a joy to maintain.",
+    title: "Architect",
+    body: "Still hands-on where it matters most: backend microservices, event-driven systems, mobile SDK strategy, developer platforms. The kind of work that decides whether the next year goes smoothly or painfully.",
   },
 ];
 
@@ -31,9 +31,9 @@ export default function About() {
           </div>
           <div className="md:col-span-2 space-y-5 text-text-secondary leading-relaxed text-lg">
             <p>
-              I'm a senior engineer at a leading{" "}
+              I'm a Senior Engineering Manager at a leading{" "}
               <span className="text-text-primary">identity-verification SaaS</span>{" "}
-              — leading architecture for a five-service platform that handles
+              — leading the team behind a five-service platform that handles
               KYC, KYB, AML and digital ID at enterprise scale, fully GDPR-aligned.
             </p>
             <p>
@@ -41,15 +41,16 @@ export default function About() {
               <span className="text-text-primary">
                 AI-augmented engineering
               </span>{" "}
-              across the org — building shared Claude Code tooling, automated AI
-              code review pipelines, and an internal R&D platform that gives
-              engineering leadership real visibility into 100+ repositories.
+              across the org — designing shared Claude Code workspaces,
+              automated AI code-review pipelines, and an internal R&D platform
+              that gives engineering leadership real visibility into 100+
+              repositories.
             </p>
             <p>
               I take on freelance work where the problem is{" "}
-              <span className="text-text-primary">load-bearing</span>: AI
-              integration, backend architecture, DevOps automation, mobile SDK
-              strategy, or unblocking a team that's stuck. I don't do
+              <span className="text-text-primary">load-bearing</span> — AI
+              strategy, engineering leadership, backend architecture, mobile SDK
+              direction, or unblocking a team that's stuck. I don't do
               logo-only consulting.
             </p>
           </div>

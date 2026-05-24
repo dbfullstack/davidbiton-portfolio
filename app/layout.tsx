@@ -1,15 +1,39 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const siteUrl = "https://davidbiton.vercel.app";
+const title = "David Biton — Senior Engineering Manager";
+const description =
+  "Senior engineering manager building AI tools, identity-verification platforms, and the teams that ship them. Available for select freelance engagements.";
+
 export const metadata: Metadata = {
-  title: "David Biton — Senior Full-Stack Engineer",
-  description:
-    "Senior engineer specializing in identity verification, DevOps, AI integration, and cross-platform mobile. I ship production systems for compliance and developer tooling.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  authors: [{ name: "David Biton" }],
+  keywords: [
+    "Senior Engineering Manager",
+    "Engineering Manager",
+    "AI integration",
+    "Claude API",
+    "Identity verification",
+    "Microservices",
+    "Mobile SDK",
+    "Freelance engineer",
+    "TypeScript",
+    "Node.js",
+  ],
   openGraph: {
-    title: "David Biton — Senior Full-Stack Engineer",
-    description:
-      "Identity • DevOps • AI Integration. Production systems for compliance and developer tooling.",
+    title,
+    description,
+    url: siteUrl,
+    siteName: "David Biton",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
   },
 };
 

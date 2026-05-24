@@ -44,10 +44,9 @@ export default function Hero() {
         </h1>
 
         <p className="fade-up delay-200 text-lg md:text-xl text-text-secondary max-w-2xl leading-relaxed mb-10">
-          I'm <span className="text-text-primary font-medium">David Biton</span> —
-          a senior engineer who architects production identity systems, builds the
-          AI tooling that makes engineering teams faster, and ships
-          cross-platform mobile at scale.
+          I'm <span className="text-text-primary font-medium">David Biton</span>{" "}
+          — a Senior Engineering Manager building AI tools, identity-verification
+          platforms, and the teams that ship them.
         </p>
 
         <div className="fade-up delay-300 flex flex-wrap items-center gap-3">
