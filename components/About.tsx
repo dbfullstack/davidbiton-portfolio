@@ -2,17 +2,17 @@ const pillars = [
   {
     icon: "◆",
     title: "Lead",
-    body: "I run engineering teams that ship — setting technical direction, removing blockers, hiring well, and protecting focus. I've grown teams from a handful of engineers into multi-squad orgs without losing velocity.",
+    body: "I run engineering teams that ship — setting technical direction, removing blockers, hiring well, and protecting focus. Available as fractional EM, technical advisor, or short-term parachute.",
   },
   {
     icon: "▲",
     title: "Automate",
-    body: "I build the AI tooling that makes engineering faster — shared Claude Code workspaces, automated PR review pipelines, custom skills and agents. Deployed across 120+ repositories.",
+    body: "I help teams adopt AI as real engineering leverage — custom Claude Code workspaces, automated PR review pipelines, agent design. Workshop-paced, owned by your team afterward.",
   },
   {
     icon: "●",
     title: "Architect",
-    body: "Still hands-on where it matters most: backend microservices, event-driven systems, mobile SDK strategy, developer platforms. The kind of work that decides whether the next year goes smoothly or painfully.",
+    body: "Still hands-on where it matters: backend microservices, event-driven systems, mobile SDK strategy, developer platforms. The unglamorous work that decides whether next year goes smoothly or painfully.",
   },
 ];
 
@@ -31,26 +31,26 @@ export default function About() {
           </div>
           <div className="md:col-span-2 space-y-5 text-text-secondary leading-relaxed text-lg">
             <p>
-              I'm a Senior Engineering Manager at a leading{" "}
-              <span className="text-text-primary">identity-verification SaaS</span>{" "}
-              — leading the team behind a five-service platform that handles
-              KYC, KYB, AML and digital ID at enterprise scale, fully GDPR-aligned.
+              I'm a Senior Engineering Manager in the{" "}
+              <span className="text-text-primary">identity-verification</span>{" "}
+              space — running teams that ship production systems in regulated,
+              high-trust environments where downtime and bad data both cost
+              real money.
             </p>
             <p>
-              In parallel, I've been pioneering{" "}
+              In parallel, I've been working on{" "}
               <span className="text-text-primary">
                 AI-augmented engineering
               </span>{" "}
-              across the org — designing shared Claude Code workspaces,
-              automated AI code-review pipelines, and an internal R&D platform
-              that gives engineering leadership real visibility into 100+
-              repositories.
+              — designing AI workflows, custom Claude Code skills and agents,
+              and the tooling that turns "we should try AI" into actual
+              shipped leverage for whole engineering orgs.
             </p>
             <p>
               I take on freelance work where the problem is{" "}
               <span className="text-text-primary">load-bearing</span> — AI
-              strategy, engineering leadership, backend architecture, mobile SDK
-              direction, or unblocking a team that's stuck. I don't do
+              strategy, engineering leadership, backend architecture, mobile
+              SDK direction, or unblocking a team that's stuck. I don't do
               logo-only consulting.
             </p>
           </div>

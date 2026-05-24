@@ -13,12 +13,11 @@ export default function TerminalMock() {
         <div className="flex">
           <span className="text-text-muted mr-3 select-none">$</span>
           <span className="text-text-primary">
-            claude review PR #4218
+            claude review PR #142
           </span>
         </div>
         <div className="mt-3 text-text-muted">
-          <span className="text-accent">●</span> Loading workspace rules
-          (20)…
+          <span className="text-accent">●</span> Loading workspace rules…
         </div>
         <div className="text-text-muted">
           <span className="text-accent">●</span> Fetching diff…
@@ -26,38 +25,33 @@ export default function TerminalMock() {
         </div>
         <div className="text-text-muted">
           <span className="text-accent">●</span> Routing to agent:{" "}
-          <span className="text-accent-2">pr-review</span>
+          <span className="text-accent-2">code-reviewer</span>
         </div>
 
         <div className="mt-4 border-l-2 border-accent/40 pl-3 space-y-2">
           <div>
             <span className="text-accent-3 font-semibold">CRITICAL</span>{" "}
-            <span className="text-text-primary">
-              vendor-api-safety
-            </span>
+            <span className="text-text-primary">external-api-safety</span>
           </div>
           <div className="text-text-secondary text-xs">
-            New monitoring check hits billable{" "}
-            <span className="text-accent-2">/rest/validate</span> instead of{" "}
-            <span className="text-accent">/rest/status</span>. Volume math:
-            60s × 24h × 3 envs = 4,320 paid calls/day.
+            New health check hits a billable endpoint. At 60s × 24h × 3 envs
+            you'd burn 4,320 paid calls/day. Switch to a free status route.
           </div>
         </div>
 
         <div className="mt-3 border-l-2 border-accent/40 pl-3 space-y-2">
           <div>
             <span className="text-accent font-semibold">IMPORTANT</span>{" "}
-            <span className="text-text-primary">feature-toggle</span>
+            <span className="text-text-primary">missing-feature-flag</span>
           </div>
           <div className="text-text-secondary text-xs">
-            New endpoint added without a per-org Flagsmith flag — staged
-            rollout impossible.
+            New endpoint ships without a feature flag — no staged rollout
+            possible. Recommended: gate behind a per-tenant toggle.
           </div>
         </div>
 
         <div className="mt-3 text-text-muted">
-          <span className="text-accent">●</span> 2 issues found · posted to PR
-          ✓
+          <span className="text-accent">●</span> 2 issues posted to PR ✓
         </div>
       </div>
     </div>

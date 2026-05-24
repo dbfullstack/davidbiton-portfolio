@@ -1,71 +1,77 @@
 import TerminalMock from "./mockups/TerminalMock";
-import DashboardMock from "./mockups/DashboardMock";
-import ArchMock from "./mockups/ArchMock";
 
-type CaseStudy = {
+type Capability = {
   title: string;
   tag: string;
-  problem: string;
-  approach: string;
-  impact: string;
+  pitch: string;
+  what: string;
+  outcome: string;
   stack: string[];
-  mock?: "dashboard" | "arch";
 };
 
-const featured = {
-  title: "AI Engineering Platform — Claude Workspace + Automated PR Review",
+const featured: Capability = {
+  title: "AI Engineering — adoption, automation, and serious tooling",
   tag: "AI integration · platform engineering",
-  problem:
-    "An engineering org of 100+ developers across 120+ repositories had no shared way to use AI in their workflow. Code review quality varied wildly. Senior engineers were burning hours on stylistic feedback in PRs.",
-  approach:
-    "Designed and shipped a shared Claude Code workspace — domain-aware agents, custom skills, slash commands, and rule sets. Layered an AI-driven PR review pipeline on top, deployed via a single shared Azure Pipelines template, with a 20-rule prompt system tuned to the codebase's failure modes.",
-  impact:
-    "Live across 120+ repositories. Senior reviewers now focus on architecture and risk, not style. Catches the systemic issues (config drift, broken syncs, security gotchas) that historically slipped through and caused incidents.",
+  pitch:
+    "Teams adopting Claude / LLMs land in one of two ditches: \"AI as gimmick\" (chat widget, no leverage) or \"AI as risk\" (autonomous agents nobody trusts). I help teams skip both.",
+  what:
+    "I design AI workflows that actually fit your codebase — custom Claude Code workspaces, automated PR review with rule-aware prompts, MCP integrations, agent design for specific repeatable tasks. Workshop-paced, shipped working, owned by your team afterward.",
+  outcome:
+    "Senior engineers stop reviewing style. Reviews get faster. Onboarding gets shorter. AI becomes a teammate, not a demo.",
   stack: [
     "Claude API",
-    "Azure AI Foundry",
-    "Azure Pipelines",
+    "Claude Code",
+    "MCP",
     "Prompt engineering",
     "Agent design",
     "TypeScript",
   ],
 };
 
-const cases: CaseStudy[] = [
+const capabilities: Capability[] = [
   {
-    title: "devhub — internal R&D platform",
-    tag: "Full-stack · platform",
-    problem:
-      "Engineering leadership had no single source of truth for feature flag state, deployments, or service health across 100+ repos.",
-    approach:
-      "Built a full-stack platform with role-based access, a live Flagsmith analytics mirror, deployment automation, service-health views, and a unified activity feed.",
-    impact:
-      "Adopted org-wide for daily ops. Made rollout state observable for the first time.",
-    stack: ["React", "TypeScript", "Tailwind", "Node.js", "PostgreSQL"],
-    mock: "dashboard",
+    title: "Backend & platform engineering",
+    tag: "Architecture · scaling",
+    pitch:
+      "When the system is harder to change than it should be, or you're afraid to touch the orchestration layer.",
+    what:
+      "Microservices and event-driven design. Internal developer platforms. Multi-tenant SaaS plumbing. The unglamorous stuff that decides whether next year is smooth or painful.",
+    outcome:
+      "Architecture that compounds instead of corroding. Teams move faster without burning the place down.",
+    stack: ["TypeScript", "Node.js", "NestJS", "PostgreSQL", "Kafka", "Redis"],
   },
   {
-    title: "Enterprise identity-verification platform",
-    tag: "Microservices · compliance",
-    problem:
-      "Five identity flows (PII, KYB, AML, Digital ID, Multi-Vendor) needed to be unified, multi-tenant, and GDPR-compliant — integrated with dozens of third-party verification vendors.",
-    approach:
-      "Architected five independent microservices behind a unified orchestration layer, with per-organization feature toggles, audit-grade logging, and a shared artifact strategy.",
-    impact:
-      "Powers identity verification at enterprise scale. Vendor swaps are config, not code.",
-    stack: ["TypeScript", "NestJS", "PostgreSQL", "Kafka", "Camunda 8"],
-    mock: "arch",
+    title: "Engineering leadership",
+    tag: "Fractional EM · advisory",
+    pitch:
+      "For teams scaling from 5→25 engineers, restructuring around squads, or stuck with a leader-shaped hole.",
+    what:
+      "Hands-on tech leadership without the politics. Setting direction, removing blockers, hiring well, protecting focus. Available as fractional EM, technical advisor, or short-term parachute.",
+    outcome:
+      "Clear priorities, fewer process meetings, code that ships predictably. Engineers stay; founders sleep.",
+    stack: ["Coaching", "Hiring", "Technical strategy", "Org design"],
   },
   {
-    title: "Cross-platform mobile SDK suite",
-    tag: "Mobile · architecture",
-    problem:
-      "22 SDK repositories across iOS, Android, Flutter, and React Native were drifting in API surface, release cadence, and behavior.",
-    approach:
-      "Established API parity rules, unified release pipelines (CocoaPods, Gradle, pub.dev, npm), and a shared distribution model with pinned version matrices.",
-    impact:
-      "Customer integrations now work identically across platforms; releases are predictable and automated.",
+    title: "Mobile SDK strategy",
+    tag: "iOS · Android · cross-platform",
+    pitch:
+      "Most mobile SDK problems aren't mobile problems — they're release, parity, and distribution problems.",
+    what:
+      "API parity across iOS / Android / Flutter / React Native. Unified release pipelines (CocoaPods, Gradle, pub.dev, npm). Version-matrix discipline so customer integrations stop drifting.",
+    outcome:
+      "One SDK story across four platforms. Releases that go out predictably instead of being events.",
     stack: ["Swift", "Kotlin", "Flutter", "React Native"],
+  },
+  {
+    title: "DevOps & reliability",
+    tag: "CI/CD · observability",
+    pitch:
+      "When deploys are scary, dashboards lie, or oncall is a punishment.",
+    what:
+      "Pipelines you'd want inherited. Observability that tells you what's actually wrong. K8s and ArgoCD without the YAML tears. Cost-aware infra decisions.",
+    outcome:
+      "Confidence to deploy on a Friday. Pages that mean something. Cloud bills you can defend.",
+    stack: ["Azure", "Kubernetes", "ArgoCD", "GitHub Actions", "Terraform"],
   },
 ];
 
@@ -77,7 +83,7 @@ function FeaturedCard() {
           <div className="lg:col-span-3">
             <div className="flex items-center gap-3 mb-5 flex-wrap">
               <span className="font-mono text-xs px-2.5 py-1 rounded-full bg-accent/10 text-accent tracking-wider uppercase border border-accent/20">
-                Featured
+                Headline capability
               </span>
               <span className="font-mono text-xs text-text-muted tracking-wider uppercase">
                 {featured.tag}
@@ -89,21 +95,21 @@ function FeaturedCard() {
             <div className="space-y-5 text-sm text-text-secondary leading-relaxed">
               <div>
                 <div className="text-text-muted font-mono text-[11px] uppercase tracking-wider mb-1.5">
-                  Problem
+                  Why people hire me here
                 </div>
-                <p>{featured.problem}</p>
+                <p>{featured.pitch}</p>
               </div>
               <div>
                 <div className="text-text-muted font-mono text-[11px] uppercase tracking-wider mb-1.5">
-                  Approach
+                  What I actually do
                 </div>
-                <p>{featured.approach}</p>
+                <p>{featured.what}</p>
               </div>
               <div>
                 <div className="text-text-muted font-mono text-[11px] uppercase tracking-wider mb-1.5">
-                  Impact
+                  Outcome
                 </div>
-                <p>{featured.impact}</p>
+                <p>{featured.outcome}</p>
               </div>
             </div>
             <div className="mt-6 pt-6 border-t border-border flex flex-wrap gap-2">
@@ -126,7 +132,7 @@ function FeaturedCard() {
   );
 }
 
-function Card({ c }: { c: CaseStudy }) {
+function Card({ c }: { c: Capability }) {
   return (
     <article className="card p-6 group">
       <div className="mb-4">
@@ -137,34 +143,24 @@ function Card({ c }: { c: CaseStudy }) {
       <h3 className="text-xl font-semibold tracking-tight mb-4 leading-snug group-hover:text-accent transition-colors">
         {c.title}
       </h3>
-      {c.mock === "dashboard" && (
-        <div className="mb-5">
-          <DashboardMock />
-        </div>
-      )}
-      {c.mock === "arch" && (
-        <div className="mb-5">
-          <ArchMock />
-        </div>
-      )}
       <div className="space-y-3 text-sm text-text-secondary leading-relaxed">
         <p>
           <span className="text-text-muted font-mono text-[11px] uppercase tracking-wider block mb-1">
-            Problem
+            Why people hire me
           </span>
-          {c.problem}
+          {c.pitch}
         </p>
         <p>
           <span className="text-text-muted font-mono text-[11px] uppercase tracking-wider block mb-1">
-            Approach
+            What I do
           </span>
-          {c.approach}
+          {c.what}
         </p>
         <p>
           <span className="text-text-muted font-mono text-[11px] uppercase tracking-wider block mb-1">
-            Impact
+            Outcome
           </span>
-          {c.impact}
+          {c.outcome}
         </p>
       </div>
       <div className="mt-5 pt-5 border-t border-border flex flex-wrap gap-2">
@@ -187,17 +183,17 @@ export default function CaseStudies() {
       <div className="max-w-5xl mx-auto px-6 py-24 md:py-32">
         <div className="mb-12">
           <div className="font-mono text-xs text-accent mb-3 tracking-wider">
-            02 / SELECTED WORK
+            02 / HOW I HELP
           </div>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-            Things I've shipped.
+            What I get hired for.
           </h2>
         </div>
 
         <FeaturedCard />
 
         <div className="grid md:grid-cols-2 gap-5">
-          {cases.map((c) => (
+          {capabilities.map((c) => (
             <Card key={c.title} c={c} />
           ))}
         </div>

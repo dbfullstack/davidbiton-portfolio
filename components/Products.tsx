@@ -1,29 +1,43 @@
+import AICoachMock from "./mockups/AICoachMock";
+import InsightsMock from "./mockups/InsightsMock";
+import MarketplaceMock from "./mockups/MarketplaceMock";
+
 type Product = {
-  name: string;
-  oneLiner: string;
+  codename: string;
+  tagline: string;
+  description: string;
   status: "Building" | "Beta soon" | "Concept";
   category: string;
-  href?: string;
+  Mock: () => React.ReactElement;
 };
 
 const products: Product[] = [
   {
-    name: "Product 01",
-    oneLiner: "Coming soon — drop your email below to hear first.",
+    codename: "AI Coach",
+    tagline: "An always-on AI reviewer that ships with your team's taste.",
+    description:
+      "Drops into any GitHub PR and gives sharp, context-aware feedback. Learns your repo's conventions so it stops nagging about style and starts flagging real risk.",
     status: "Building",
     category: "AI · dev tools",
+    Mock: AICoachMock,
   },
   {
-    name: "Product 02",
-    oneLiner: "Coming soon — drop your email below to hear first.",
+    codename: "Pulse",
+    tagline: "Engineering insights that don't make people defensive.",
+    description:
+      "Sprint velocity, review latency, on-time delivery — surfaced as actionable nudges, not vanity metrics. Built for the EMs and tech leads who actually have to act on them.",
     status: "Concept",
     category: "Engineering productivity",
+    Mock: InsightsMock,
   },
   {
-    name: "Product 03",
-    oneLiner: "Coming soon — drop your email below to hear first.",
+    codename: "Skillshop",
+    tagline: "A marketplace of opinionated Claude skills you'd actually pay for.",
+    description:
+      "Curated, battle-tested Claude Code skills and agents. Install, run, ship. No more rebuilding the same review / planning / postmortem prompts from scratch.",
     status: "Concept",
-    category: "?",
+    category: "AI · tooling",
+    Mock: MarketplaceMock,
   },
 ];
 
@@ -33,9 +47,47 @@ const statusStyles: Record<Product["status"], string> = {
   "Concept": "bg-text-muted/10 text-text-muted border-text-muted/30",
 };
 
+function ProductCard({ p }: { p: Product }) {
+  const { Mock } = p;
+  return (
+    <article className="card p-6 flex flex-col">
+      <div className="flex items-center justify-between mb-5">
+        <span className="font-mono text-[11px] uppercase tracking-wider text-text-muted">
+          {p.category}
+        </span>
+        <span
+          className={`font-mono text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border ${statusStyles[p.status]}`}
+        >
+          {p.status}
+        </span>
+      </div>
+
+      <div className="mb-5">
+        <Mock />
+      </div>
+
+      <h3 className="text-xl font-semibold tracking-tight mb-2">{p.codename}</h3>
+      <p className="text-sm text-text-primary mb-3 leading-snug">{p.tagline}</p>
+      <p className="text-sm text-text-secondary leading-relaxed mb-6 grow">
+        {p.description}
+      </p>
+      <a
+        href="#contact"
+        className="font-mono text-xs text-accent hover:text-accent-hover transition-colors inline-flex items-center gap-1.5"
+      >
+        Get early access
+        <span aria-hidden>→</span>
+      </a>
+    </article>
+  );
+}
+
 export default function Products() {
   return (
-    <section id="products" className="relative border-t border-border overflow-hidden">
+    <section
+      id="products"
+      className="relative border-t border-border overflow-hidden"
+    >
       <div
         className="glow-blob"
         style={{
@@ -63,6 +115,7 @@ export default function Products() {
               focused products — primarily in{" "}
               <span className="text-text-primary">AI tooling</span> and{" "}
               <span className="text-text-primary">engineering productivity</span>.
+              The mockups below are real product directions, not stock art.
               First launches in 2026.
             </p>
           </div>
@@ -70,31 +123,7 @@ export default function Products() {
 
         <div className="grid md:grid-cols-3 gap-5 mb-10">
           {products.map((p) => (
-            <article key={p.name} className="card p-6 flex flex-col">
-              <div className="flex items-center justify-between mb-5">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-text-muted">
-                  {p.category}
-                </span>
-                <span
-                  className={`font-mono text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border ${statusStyles[p.status]}`}
-                >
-                  {p.status}
-                </span>
-              </div>
-              <h3 className="text-xl font-semibold tracking-tight mb-3">
-                {p.name}
-              </h3>
-              <p className="text-sm text-text-secondary leading-relaxed mb-6 grow">
-                {p.oneLiner}
-              </p>
-              <a
-                href="#contact"
-                className="font-mono text-xs text-accent hover:text-accent-hover transition-colors inline-flex items-center gap-1.5"
-              >
-                Get early access
-                <span aria-hidden>→</span>
-              </a>
-            </article>
+            <ProductCard key={p.codename} p={p} />
           ))}
         </div>
 

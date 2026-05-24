@@ -72,9 +72,9 @@ export default function Hero() {
 
         <div className="fade-up delay-400 mt-16 grid grid-cols-3 gap-px max-w-2xl bg-border rounded-xl overflow-hidden border border-border">
           {[
-            { v: "120+", l: "Repos w/ AI tooling" },
-            { v: "22", l: "Mobile SDK repos owned" },
-            { v: "5", l: "Identity services in prod" },
+            { v: "10+", l: "Years engineering" },
+            { v: "4", l: "Mobile platforms shipped" },
+            { v: "100+", l: "Repos worked on" },
           ].map((s) => (
             <div key={s.l} className="bg-bg-elevated/60 backdrop-blur-sm px-5 py-4">
               <div className="font-mono text-2xl font-semibold text-text-primary">
