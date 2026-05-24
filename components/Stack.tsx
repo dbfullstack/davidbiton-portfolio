@@ -80,7 +80,7 @@ export default function Stack() {
       <div className="max-w-5xl mx-auto px-6 py-24 md:py-32">
         <div className="mb-14">
           <div className="font-mono text-xs text-accent mb-3 tracking-wider">
-            03 / STACK
+            04 / STACK
           </div>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
             What I build with.
