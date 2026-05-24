@@ -1,4 +1,8 @@
 import TerminalMock from "./mockups/TerminalMock";
+import PlatformMock from "./mockups/PlatformMock";
+import LeadershipMock from "./mockups/LeadershipMock";
+import MobileMock from "./mockups/MobileMock";
+import PipelineMock from "./mockups/PipelineMock";
 
 type Capability = {
   title: string;
@@ -7,15 +11,16 @@ type Capability = {
   what: string;
   outcome: string;
   stack: string[];
+  Mock: () => React.ReactElement;
 };
 
-const featured: Capability = {
+const featured = {
   title: "AI Engineering — adoption, automation, and serious tooling",
   tag: "AI integration · platform engineering",
   pitch:
-    "Teams adopting Claude / LLMs land in one of two ditches: \"AI as gimmick\" (chat widget, no leverage) or \"AI as risk\" (autonomous agents nobody trusts). I help teams skip both.",
+    "Teams adopting Claude / LLMs land in one of two ditches: \"AI as gimmick\" (chat widget, no leverage) or \"AI as risk\" (autonomous agents nobody trusts). We help teams skip both.",
   what:
-    "I design AI workflows that actually fit your codebase — custom Claude Code workspaces, automated PR review with rule-aware prompts, MCP integrations, agent design for specific repeatable tasks. Workshop-paced, shipped working, owned by your team afterward.",
+    "We design AI workflows that actually fit your codebase — custom Claude Code workspaces, automated PR review with rule-aware prompts, MCP integrations, agent design for specific repeatable tasks. Workshop-paced, shipped working, owned by your team afterward.",
   outcome:
     "Senior engineers stop reviewing style. Reviews get faster. Onboarding gets shorter. AI becomes a teammate, not a demo.",
   stack: [
@@ -39,6 +44,7 @@ const capabilities: Capability[] = [
     outcome:
       "Architecture that compounds instead of corroding. Teams move faster without burning the place down.",
     stack: ["TypeScript", "Node.js", "NestJS", "PostgreSQL", "Kafka", "Redis"],
+    Mock: PlatformMock,
   },
   {
     title: "Engineering leadership",
@@ -50,6 +56,7 @@ const capabilities: Capability[] = [
     outcome:
       "Clear priorities, fewer process meetings, code that ships predictably. Engineers stay; founders sleep.",
     stack: ["Coaching", "Hiring", "Technical strategy", "Org design"],
+    Mock: LeadershipMock,
   },
   {
     title: "Mobile SDK strategy",
@@ -61,6 +68,7 @@ const capabilities: Capability[] = [
     outcome:
       "One SDK story across four platforms. Releases that go out predictably instead of being events.",
     stack: ["Swift", "Kotlin", "Flutter", "React Native"],
+    Mock: MobileMock,
   },
   {
     title: "DevOps & reliability",
@@ -72,6 +80,7 @@ const capabilities: Capability[] = [
     outcome:
       "Confidence to deploy on a Friday. Pages that mean something. Cloud bills you can defend.",
     stack: ["Azure", "Kubernetes", "ArgoCD", "GitHub Actions", "Terraform"],
+    Mock: PipelineMock,
   },
 ];
 
@@ -95,13 +104,13 @@ function FeaturedCard() {
             <div className="space-y-5 text-sm text-text-secondary leading-relaxed">
               <div>
                 <div className="text-text-muted font-mono text-[11px] uppercase tracking-wider mb-1.5">
-                  Why people hire me here
+                  Why teams hire us here
                 </div>
                 <p>{featured.pitch}</p>
               </div>
               <div>
                 <div className="text-text-muted font-mono text-[11px] uppercase tracking-wider mb-1.5">
-                  What I actually do
+                  What we actually do
                 </div>
                 <p>{featured.what}</p>
               </div>
@@ -133,6 +142,7 @@ function FeaturedCard() {
 }
 
 function Card({ c }: { c: Capability }) {
+  const { Mock } = c;
   return (
     <article className="card p-6 group">
       <div className="mb-4">
@@ -143,16 +153,19 @@ function Card({ c }: { c: Capability }) {
       <h3 className="text-xl font-semibold tracking-tight mb-4 leading-snug group-hover:text-accent transition-colors">
         {c.title}
       </h3>
+      <div className="mb-5">
+        <Mock />
+      </div>
       <div className="space-y-3 text-sm text-text-secondary leading-relaxed">
         <p>
           <span className="text-text-muted font-mono text-[11px] uppercase tracking-wider block mb-1">
-            Why people hire me
+            Why teams hire us
           </span>
           {c.pitch}
         </p>
         <p>
           <span className="text-text-muted font-mono text-[11px] uppercase tracking-wider block mb-1">
-            What I do
+            What we do
           </span>
           {c.what}
         </p>
@@ -183,10 +196,10 @@ export default function CaseStudies() {
       <div className="max-w-5xl mx-auto px-6 py-24 md:py-32">
         <div className="mb-12">
           <div className="font-mono text-xs text-accent mb-3 tracking-wider">
-            02 / HOW I HELP
+            02 / WHAT WE DO
           </div>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-            What I get hired for.
+            How we help.
           </h2>
         </div>
 

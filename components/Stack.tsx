@@ -83,7 +83,7 @@ export default function Stack() {
             04 / STACK
           </div>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-            What I build with.
+            What we build with.
           </h2>
         </div>
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-12">

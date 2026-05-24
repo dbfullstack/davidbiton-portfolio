@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const siteUrl = "https://davidbiton.vercel.app";
-const title = "David Biton — Senior Engineering Manager";
+const title = "DB Studio — Engineering, AI, and load-bearing software";
 const description =
-  "Senior engineering manager building AI tools, identity-verification platforms, and the teams that ship them. Available for select freelance engagements.";
+  "DB Studio is a software studio founded by David Biton. We build AI tools, backend platforms, and the engineering leadership behind them. Available for select engagements.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -12,14 +12,14 @@ export const metadata: Metadata = {
   description,
   authors: [{ name: "David Biton" }],
   keywords: [
-    "Senior Engineering Manager",
-    "Engineering Manager",
+    "DB Studio",
+    "Software studio",
     "AI integration",
     "Claude API",
-    "Identity verification",
-    "Microservices",
+    "Engineering leadership",
+    "Fractional EM",
+    "Backend architecture",
     "Mobile SDK",
-    "Freelance engineer",
     "TypeScript",
     "Node.js",
   ],
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title,
     description,
     url: siteUrl,
-    siteName: "David Biton",
+    siteName: "DB Studio",
     type: "website",
   },
   twitter: {

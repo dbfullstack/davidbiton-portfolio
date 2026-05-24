@@ -106,13 +106,13 @@ export default function Products() {
               03 / STUDIO
             </div>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-              What I'm shipping.
+              What we're shipping.
             </h2>
           </div>
           <div className="md:col-span-2">
             <p className="text-text-secondary leading-relaxed text-lg">
-              In parallel with client work, I'm building a small portfolio of
-              focused products — primarily in{" "}
+              In parallel with client work, DB Studio is building a small
+              portfolio of focused products — primarily in{" "}
               <span className="text-text-primary">AI tooling</span> and{" "}
               <span className="text-text-primary">engineering productivity</span>.
               The mockups below are real product directions, not stock art.
@@ -135,7 +135,7 @@ export default function Products() {
           >
             Drop your email
           </a>{" "}
-          and I'll ping you on each launch.
+          and we'll ping you on each launch.
         </div>
       </div>
     </section>

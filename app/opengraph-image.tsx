@@ -4,7 +4,7 @@ export const runtime = "edge";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt =
-  "David Biton — Senior Engineering Manager. AI, identity, and scale.";
+  "DB Studio — Engineering, AI, and load-bearing software.";
 
 export default async function OG() {
   return new ImageResponse(
@@ -50,7 +50,7 @@ export default async function OG() {
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div
             style={{
-              fontSize: 88,
+              fontSize: 96,
               fontWeight: 700,
               lineHeight: 1,
               letterSpacing: -2,
@@ -60,28 +60,29 @@ export default async function OG() {
               color: "transparent",
             }}
           >
-            David Biton
+            DB Studio
           </div>
           <div
             style={{
-              fontSize: 44,
+              fontSize: 40,
               fontWeight: 500,
               color: "#f5f5f7",
               lineHeight: 1.2,
               maxWidth: 1000,
             }}
           >
-            Senior Engineering Manager
+            Engineering, AI, and load-bearing software.
           </div>
           <div
             style={{
-              fontSize: 28,
+              fontSize: 26,
               color: "#a1a1aa",
               lineHeight: 1.3,
               maxWidth: 1000,
             }}
           >
-            Building AI tools, identity platforms, and the teams that ship them.
+            A small studio by David Biton — senior engineering, AI tooling,
+            and the platforms that ship them.
           </div>
         </div>
 
@@ -94,13 +95,11 @@ export default async function OG() {
             color: "#71717a",
           }}
         >
-          <div style={{ display: "flex", gap: 36 }}>
-            <span>davidbiton.vercel.app</span>
-          </div>
+          <span>davidbiton.vercel.app</span>
           <div
             style={{
               fontFamily: "monospace",
-              fontSize: 24,
+              fontSize: 26,
               fontWeight: 600,
               backgroundImage:
                 "linear-gradient(120deg, #22d3ee 0%, #a78bfa 100%)",
@@ -108,7 +107,7 @@ export default async function OG() {
               color: "transparent",
             }}
           >
-            db.dev
+            db.studio
           </div>
         </div>
       </div>

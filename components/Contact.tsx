@@ -108,9 +108,9 @@ export default function Contact() {
             <span className="gradient-text">load-bearing</span> to build?
           </h2>
           <p className="text-text-secondary text-lg max-w-2xl mx-auto leading-relaxed">
-            I take on a small number of engagements at a time. AI strategy,
-            engineering leadership, backend architecture, mobile direction — if
-            it's senior, let's talk.
+            DB Studio takes on a small number of engagements at a time. AI
+            strategy, engineering leadership, backend architecture, mobile
+            direction — if it's senior, let's talk.
           </p>
         </div>
 

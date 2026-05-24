@@ -36,17 +36,24 @@ export default function Hero() {
           </span>
         </div>
 
-        <h1 className="fade-up delay-100 text-5xl md:text-7xl font-semibold tracking-tight leading-[1.02] mb-8">
-          Engineering at the edge of{" "}
-          <span className="gradient-text">AI</span>,
+        <div className="fade-up delay-100 mb-4 inline-block">
+          <span className="font-mono text-xs px-2 py-1 rounded bg-gradient-to-br from-accent to-accent-2 text-bg font-bold tracking-wider uppercase">
+            DB Studio
+          </span>
+        </div>
+
+        <h1 className="fade-up delay-200 text-5xl md:text-7xl font-semibold tracking-tight leading-[1.02] mb-8">
+          Engineering, <span className="gradient-text">AI</span>,
           <br />
-          <span className="text-text-secondary">identity, and scale.</span>
+          <span className="text-text-secondary">and load-bearing software.</span>
         </h1>
 
-        <p className="fade-up delay-200 text-lg md:text-xl text-text-secondary max-w-2xl leading-relaxed mb-10">
-          I'm <span className="text-text-primary font-medium">David Biton</span>{" "}
-          — a Senior Engineering Manager building AI tools, identity-verification
-          platforms, and the teams that ship them.
+        <p className="fade-up delay-300 text-lg md:text-xl text-text-secondary max-w-2xl leading-relaxed mb-10">
+          DB Studio is a small software studio founded by{" "}
+          <span className="text-text-primary font-medium">David Biton</span> —
+          senior engineering manager, AI-tools builder, and the architect behind
+          ten years of production systems. We take on a small number of
+          load-bearing engagements at a time.
         </p>
 
         <div className="fade-up delay-300 flex flex-wrap items-center gap-3">
@@ -66,7 +73,7 @@ export default function Hero() {
             href="#work"
             className="inline-flex items-center gap-2 border border-border hover:border-text-secondary text-text-primary font-medium px-6 py-3 rounded-lg transition-colors"
           >
-            See selected work
+            See what we do
           </a>
         </div>
 
