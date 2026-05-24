@@ -67,17 +67,6 @@ const cases: CaseStudy[] = [
       "Customer integrations now work identically across platforms; releases are predictable and automated.",
     stack: ["Swift", "Kotlin", "Flutter", "React Native"],
   },
-  {
-    title: "Workflow orchestration on Camunda 8",
-    tag: "Event-driven · BPMN",
-    problem:
-      "Verification flows hardcoded across services made vendor changes, retries, and SLA tracking nearly impossible.",
-    approach:
-      "Migrated orchestration to Camunda 8 BPMN with Kafka-backed workers, versioned deployments, and live process-state monitoring.",
-    impact:
-      "Workflow changes ship without service redeploys; vendor swaps are configuration, not code.",
-    stack: ["Camunda 8", "BPMN", "Kafka", "TypeScript"],
-  },
 ];
 
 function FeaturedCard() {
