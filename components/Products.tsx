@@ -1,6 +1,7 @@
 import AICoachMock from "./mockups/AICoachMock";
 import InsightsMock from "./mockups/InsightsMock";
 import MarketplaceMock from "./mockups/MarketplaceMock";
+import FlagscopeFeatureMock from "./mockups/FlagscopeFeatureMock";
 
 type Product = {
   codename: string;
@@ -12,45 +13,7 @@ type Product = {
   Mock: () => React.ReactElement;
 };
 
-const products: Product[] = [
-  {
-    codename: "Flagscope",
-    tagline: "Kill flag debt — multi-provider flag governance.",
-    description:
-      "Connects to LaunchDarkly, Flagsmith, Statsig and Unleash. Finds stale flags, ownerless flags, and dead branches. Opens the cleanup PR for you. Landing page live, beta opens early 2026.",
-    status: "Live · Waitlist",
-    category: "Engineering productivity",
-    href: "https://flagscope.vercel.app",
-    Mock: () => (
-      <div className="rounded-xl border border-border bg-bg-elevated overflow-hidden">
-        <div className="flex items-center justify-between px-3 py-2 border-b border-border bg-surface">
-          <span className="font-mono text-[11px] font-bold gradient-text">flagscope</span>
-          <span className="font-mono text-[9.5px] text-accent">live →</span>
-        </div>
-        <div className="p-3 grid grid-cols-4 gap-px bg-border rounded-md overflow-hidden">
-          {[
-            { v: "147", l: "flags", c: "text-text-primary" },
-            { v: "32", l: "stale", c: "text-warning" },
-            { v: "11", l: "ownerless", c: "text-accent-3" },
-            { v: "8", l: "dead", c: "text-danger" },
-          ].map((s) => (
-            <div key={s.l} className="bg-bg-elevated px-2 py-1.5 text-center">
-              <div className={`font-mono text-sm font-semibold ${s.c}`}>{s.v}</div>
-              <div className="text-[8.5px] uppercase tracking-wider text-text-muted mt-0.5">
-                {s.l}
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="px-3 pb-3">
-          <div className="rounded-md bg-bg border border-border p-2 mt-2 font-mono text-[10px] text-text-secondary">
-            <span className="text-accent">●</span> checkout-v2-banner · 127d ON ·{" "}
-            <span className="text-accent font-semibold">open PR →</span>
-          </div>
-        </div>
-      </div>
-    ),
-  },
+const upcoming: Product[] = [
   {
     codename: "AI Coach",
     tagline: "Always-on AI reviewer for your team.",
@@ -81,11 +44,76 @@ const products: Product[] = [
 ];
 
 const statusStyles: Record<Product["status"], string> = {
-  "Live · Waitlist": "bg-green-400/10 text-green-400 border-green-400/30",
+  "Live · Waitlist": "bg-green-400/10 text-green-400 border-green-400/40",
   "Building": "bg-accent/10 text-accent border-accent/30",
   "Beta soon": "bg-accent-2/10 text-accent-2 border-accent-2/30",
   "Concept": "bg-text-muted/10 text-text-muted border-text-muted/30",
 };
+
+function FeaturedFlagscope() {
+  return (
+    <article className="relative gradient-border p-px rounded-2xl mb-6">
+      <div className="bg-bg-elevated rounded-2xl p-8 md:p-10">
+        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
+          <div className="lg:col-span-2">
+            <div className="flex items-center gap-2 mb-5 flex-wrap">
+              <span className="font-mono text-[11px] uppercase tracking-wider px-2.5 py-1 rounded-full border bg-green-400/10 text-green-400 border-green-400/40 flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-green-400 pulse-dot" />
+                Live · Waitlist
+              </span>
+              <span className="font-mono text-[11px] text-text-muted tracking-wider uppercase">
+                Engineering productivity
+              </span>
+            </div>
+            <h3 className="text-3xl md:text-4xl font-semibold tracking-tight mb-3 leading-tight">
+              <span className="gradient-text">Flagscope</span>
+            </h3>
+            <p className="text-lg text-text-primary mb-4 leading-snug">
+              Kill flag debt. Multi-provider feature flag governance.
+            </p>
+            <p className="text-sm text-text-secondary leading-relaxed mb-6">
+              Connects to LaunchDarkly, Flagsmith, Statsig and Unleash. Finds
+              stale flags, ownerless flags, dead branches. Opens the cleanup PR
+              for you. Landing live; beta opens early 2026.
+            </p>
+            <div className="flex flex-wrap gap-2 mb-6">
+              {["LaunchDarkly", "Flagsmith", "Statsig", "Unleash"].map((p) => (
+                <span
+                  key={p}
+                  className="font-mono text-xs px-2.5 py-1 bg-bg border border-border rounded text-text-secondary"
+                >
+                  {p}
+                </span>
+              ))}
+            </div>
+            <div className="flex items-center gap-3">
+              <a
+                href="https://flagscope.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 bg-gradient-to-r from-accent to-accent-2 hover:from-accent-hover hover:to-accent-2 text-bg font-semibold px-5 py-2.5 rounded-lg transition-all shadow-lg shadow-accent/20 hover:shadow-accent/40"
+              >
+                Visit Flagscope
+                <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
+              </a>
+              <a
+                href="https://flagscope.vercel.app#contact"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-sm text-text-secondary hover:text-accent transition-colors"
+              >
+                Join waitlist
+              </a>
+            </div>
+          </div>
+          <div className="lg:col-span-3">
+            <FlagscopeFeatureMock />
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
 
 function ProductCard({ p }: { p: Product }) {
   const { Mock } = p;
@@ -93,13 +121,13 @@ function ProductCard({ p }: { p: Product }) {
   const ctaHref = p.href ?? "#contact";
 
   return (
-    <article className="card p-6 flex flex-col">
-      <div className="flex items-center justify-between mb-5">
-        <span className="font-mono text-[11px] uppercase tracking-wider text-text-muted">
+    <article className="card p-6 flex flex-col h-full">
+      <div className="flex items-center justify-between mb-5 gap-2">
+        <span className="font-mono text-[10.5px] uppercase tracking-wider text-text-muted leading-tight">
           {p.category}
         </span>
         <span
-          className={`font-mono text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border ${statusStyles[p.status]}`}
+          className={`font-mono text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border whitespace-nowrap ${statusStyles[p.status]}`}
         >
           {p.status}
         </span>
@@ -173,8 +201,10 @@ export default function Products() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
-          {products.map((p) => (
+        <FeaturedFlagscope />
+
+        <div className="grid md:grid-cols-3 gap-5 mb-10">
+          {upcoming.map((p) => (
             <ProductCard key={p.codename} p={p} />
           ))}
         </div>
