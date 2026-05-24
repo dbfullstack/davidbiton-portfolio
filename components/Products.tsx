@@ -6,15 +6,54 @@ type Product = {
   codename: string;
   tagline: string;
   description: string;
-  status: "Building" | "Beta soon" | "Concept";
+  status: "Live · Waitlist" | "Building" | "Beta soon" | "Concept";
   category: string;
+  href?: string;
   Mock: () => React.ReactElement;
 };
 
 const products: Product[] = [
   {
+    codename: "Flagscope",
+    tagline: "Kill flag debt — multi-provider flag governance.",
+    description:
+      "Connects to LaunchDarkly, Flagsmith, Statsig and Unleash. Finds stale flags, ownerless flags, and dead branches. Opens the cleanup PR for you. Landing page live, beta opens early 2026.",
+    status: "Live · Waitlist",
+    category: "Engineering productivity",
+    href: "https://flagscope.vercel.app",
+    Mock: () => (
+      <div className="rounded-xl border border-border bg-bg-elevated overflow-hidden">
+        <div className="flex items-center justify-between px-3 py-2 border-b border-border bg-surface">
+          <span className="font-mono text-[11px] font-bold gradient-text">flagscope</span>
+          <span className="font-mono text-[9.5px] text-accent">live →</span>
+        </div>
+        <div className="p-3 grid grid-cols-4 gap-px bg-border rounded-md overflow-hidden">
+          {[
+            { v: "147", l: "flags", c: "text-text-primary" },
+            { v: "32", l: "stale", c: "text-warning" },
+            { v: "11", l: "ownerless", c: "text-accent-3" },
+            { v: "8", l: "dead", c: "text-danger" },
+          ].map((s) => (
+            <div key={s.l} className="bg-bg-elevated px-2 py-1.5 text-center">
+              <div className={`font-mono text-sm font-semibold ${s.c}`}>{s.v}</div>
+              <div className="text-[8.5px] uppercase tracking-wider text-text-muted mt-0.5">
+                {s.l}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="px-3 pb-3">
+          <div className="rounded-md bg-bg border border-border p-2 mt-2 font-mono text-[10px] text-text-secondary">
+            <span className="text-accent">●</span> checkout-v2-banner · 127d ON ·{" "}
+            <span className="text-accent font-semibold">open PR →</span>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
     codename: "AI Coach",
-    tagline: "An always-on AI reviewer that ships with your team's taste.",
+    tagline: "Always-on AI reviewer for your team.",
     description:
       "Drops into any GitHub PR and gives sharp, context-aware feedback. Learns your repo's conventions so it stops nagging about style and starts flagging real risk.",
     status: "Building",
@@ -32,7 +71,7 @@ const products: Product[] = [
   },
   {
     codename: "Skillshop",
-    tagline: "A marketplace of opinionated Claude skills you'd actually pay for.",
+    tagline: "A marketplace of opinionated Claude skills.",
     description:
       "Curated, battle-tested Claude Code skills and agents. Install, run, ship. No more rebuilding the same review / planning / postmortem prompts from scratch.",
     status: "Concept",
@@ -42,6 +81,7 @@ const products: Product[] = [
 ];
 
 const statusStyles: Record<Product["status"], string> = {
+  "Live · Waitlist": "bg-green-400/10 text-green-400 border-green-400/30",
   "Building": "bg-accent/10 text-accent border-accent/30",
   "Beta soon": "bg-accent-2/10 text-accent-2 border-accent-2/30",
   "Concept": "bg-text-muted/10 text-text-muted border-text-muted/30",
@@ -49,6 +89,9 @@ const statusStyles: Record<Product["status"], string> = {
 
 function ProductCard({ p }: { p: Product }) {
   const { Mock } = p;
+  const cta = p.href ? "Visit site" : "Get early access";
+  const ctaHref = p.href ?? "#contact";
+
   return (
     <article className="card p-6 flex flex-col">
       <div className="flex items-center justify-between mb-5">
@@ -72,10 +115,12 @@ function ProductCard({ p }: { p: Product }) {
         {p.description}
       </p>
       <a
-        href="#contact"
+        href={ctaHref}
+        target={p.href ? "_blank" : undefined}
+        rel={p.href ? "noopener noreferrer" : undefined}
         className="font-mono text-xs text-accent hover:text-accent-hover transition-colors inline-flex items-center gap-1.5"
       >
-        Get early access
+        {cta}
         <span aria-hidden>→</span>
       </a>
     </article>
@@ -115,13 +160,20 @@ export default function Products() {
               portfolio of focused products — primarily in{" "}
               <span className="text-text-primary">AI tooling</span> and{" "}
               <span className="text-text-primary">engineering productivity</span>.
-              The mockups below are real product directions, not stock art.
-              First launches in 2026.
+              <a
+                href="https://flagscope.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:text-accent-hover transition-colors"
+              >
+                {" "}Flagscope
+              </a>{" "}
+              is the first one live — collecting waitlist signups now.
             </p>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-5 mb-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
           {products.map((p) => (
             <ProductCard key={p.codename} p={p} />
           ))}
