@@ -2,6 +2,7 @@ import AICoachMock from "./mockups/AICoachMock";
 import InsightsMock from "./mockups/InsightsMock";
 import MarketplaceMock from "./mockups/MarketplaceMock";
 import FlagscopeFeatureMock from "./mockups/FlagscopeFeatureMock";
+import DevHubMock from "./mockups/DevHubMock";
 
 type Product = {
   codename: string;
@@ -14,6 +15,15 @@ type Product = {
 };
 
 const upcoming: Product[] = [
+  {
+    codename: "DevHub",
+    tagline: "One dashboard for repos, sprints, releases, and ops — AI-native.",
+    description:
+      "Self-hostable engineering dashboard that unifies GitHub or Azure DevOps, sprints, releases, and monitoring into one pane of glass, with AI grounded in the actual indexed codebase — chat, PR review, and drafted tickets, not just charts. Self-hosted or hosted, either way.",
+    status: "Building",
+    category: "AI · dev tools",
+    Mock: DevHubMock,
+  },
   {
     codename: "AI Coach",
     tagline: "Always-on AI reviewer for your team.",
