@@ -1,3 +1,5 @@
+import Reveal from "./Reveal";
+
 const pillars = [
   {
     icon: "◆",
@@ -18,14 +20,14 @@ const pillars = [
 
 export default function About() {
   return (
-    <section id="about" className="relative border-t border-border">
+    <section id="about" aria-labelledby="about-heading" className="relative border-t border-border">
       <div className="max-w-5xl mx-auto px-6 py-24 md:py-32">
-        <div className="grid md:grid-cols-3 gap-12 mb-20">
+        <Reveal className="grid md:grid-cols-3 gap-12 mb-20">
           <div className="md:col-span-1">
             <div className="font-mono text-xs text-accent mb-3 tracking-wider">
               01 / STUDIO
             </div>
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+            <h2 id="about-heading" className="text-3xl md:text-4xl font-semibold tracking-tight">
               What we do.
             </h2>
           </div>
@@ -50,23 +52,23 @@ export default function About() {
               We take on{" "}
               <span className="text-text-primary">load-bearing</span> work — AI
               strategy, fractional engineering management, backend
-              architecture, mobile SDK direction. We don't do logo-only
-              consulting, and we don't take on projects we can't move.
+              architecture, mobile SDK direction. We don&apos;t do logo-only
+              consulting, and we don&apos;t take on projects we can&apos;t move.
             </p>
           </div>
-        </div>
+        </Reveal>
 
         <div className="grid md:grid-cols-3 gap-5">
-          {pillars.map((p) => (
-            <div key={p.title} className="card p-7">
-              <div className="text-2xl mb-4 text-accent">{p.icon}</div>
+          {pillars.map((p, i) => (
+            <Reveal key={p.title} delayMs={i * 100} className="card p-7">
+              <div aria-hidden="true" className="text-2xl mb-4 text-accent">{p.icon}</div>
               <h3 className="text-xl font-semibold mb-3 tracking-tight">
                 {p.title}
               </h3>
               <p className="text-text-secondary text-sm leading-relaxed">
                 {p.body}
               </p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

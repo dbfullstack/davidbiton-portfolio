@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import RollingCards from "@/components/RollingCards";
 import About from "@/components/About";
 import CaseStudies from "@/components/CaseStudies";
 import LiveWork from "@/components/LiveWork";
@@ -12,8 +13,9 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content">
         <Hero />
+        <RollingCards />
         <About />
         <CaseStudies />
         <LiveWork />

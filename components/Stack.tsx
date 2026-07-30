@@ -1,3 +1,5 @@
+import Reveal from "./Reveal";
+
 type StackGroup = {
   title: string;
   blurb: string;
@@ -76,19 +78,19 @@ const groups: StackGroup[] = [
 
 export default function Stack() {
   return (
-    <section id="stack" className="relative border-t border-border">
+    <section id="stack" aria-labelledby="stack-heading" className="relative border-t border-border">
       <div className="max-w-5xl mx-auto px-6 py-24 md:py-32">
-        <div className="mb-14">
+        <Reveal className="mb-14">
           <div className="font-mono text-xs text-accent mb-3 tracking-wider">
             05 / STACK
           </div>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+          <h2 id="stack-heading" className="text-3xl md:text-4xl font-semibold tracking-tight">
             What we build with.
           </h2>
-        </div>
+        </Reveal>
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-12">
-          {groups.map((g) => (
-            <div key={g.title}>
+          {groups.map((g, i) => (
+            <Reveal key={g.title} delayMs={(i % 2) * 100}>
               <div className="flex items-baseline justify-between mb-2">
                 <h3 className="font-mono text-sm text-text-primary tracking-wide">
                   {g.title}
@@ -105,7 +107,7 @@ export default function Stack() {
                   </span>
                 ))}
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

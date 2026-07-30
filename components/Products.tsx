@@ -3,6 +3,7 @@ import InsightsMock from "./mockups/InsightsMock";
 import MarketplaceMock from "./mockups/MarketplaceMock";
 import FlagscopeFeatureMock from "./mockups/FlagscopeFeatureMock";
 import DevHubMock from "./mockups/DevHubMock";
+import Reveal from "./Reveal";
 
 type Product = {
   codename: string;
@@ -116,7 +117,7 @@ function FeaturedFlagscope() {
               </a>
             </div>
           </div>
-          <div className="lg:col-span-3">
+          <div aria-hidden="true" className="lg:col-span-3">
             <FlagscopeFeatureMock />
           </div>
         </div>
@@ -143,7 +144,7 @@ function ProductCard({ p }: { p: Product }) {
         </span>
       </div>
 
-      <div className="mb-5">
+      <div aria-hidden="true" className="mb-5">
         <Mock />
       </div>
 
@@ -169,9 +170,11 @@ export default function Products() {
   return (
     <section
       id="products"
+      aria-labelledby="products-heading"
       className="relative border-t border-border overflow-hidden"
     >
       <div
+        aria-hidden="true"
         className="glow-blob"
         style={{
           width: 420,
@@ -183,13 +186,13 @@ export default function Products() {
         }}
       />
       <div className="relative max-w-5xl mx-auto px-6 py-24 md:py-32">
-        <div className="grid md:grid-cols-3 gap-12 mb-12">
+        <Reveal className="grid md:grid-cols-3 gap-12 mb-12">
           <div className="md:col-span-1">
             <div className="font-mono text-xs text-accent mb-3 tracking-wider">
               04 / STUDIO
             </div>
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-              What we're shipping.
+            <h2 id="products-heading" className="text-3xl md:text-4xl font-semibold tracking-tight">
+              What we&apos;re shipping.
             </h2>
           </div>
           <div className="md:col-span-2">
@@ -209,13 +212,17 @@ export default function Products() {
               is the first one live — collecting waitlist signups now.
             </p>
           </div>
-        </div>
+        </Reveal>
 
-        <FeaturedFlagscope />
+        <Reveal>
+          <FeaturedFlagscope />
+        </Reveal>
 
         <div className="grid md:grid-cols-3 gap-5 mb-10">
-          {upcoming.map((p) => (
-            <ProductCard key={p.codename} p={p} />
+          {upcoming.map((p, i) => (
+            <Reveal key={p.codename} delayMs={i * 100}>
+              <ProductCard p={p} />
+            </Reveal>
           ))}
         </div>
 
@@ -227,7 +234,7 @@ export default function Products() {
           >
             Drop your email
           </a>{" "}
-          and we'll ping you on each launch.
+          and we&apos;ll ping you on each launch.
         </div>
       </div>
     </section>

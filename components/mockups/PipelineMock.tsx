@@ -14,7 +14,7 @@ export default function PipelineMock() {
         <span className="font-mono text-[9.5px] text-accent">#1247</span>
       </div>
       <div className="space-y-1">
-        {stages.map((s, i) => (
+        {stages.map((s) => (
           <div key={s.name} className="flex items-center gap-2">
             <div className="w-4 flex items-center justify-center">
               {s.status === "ok" && <span className="text-green-400 text-[11px]">●</span>}

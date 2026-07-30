@@ -64,7 +64,7 @@ export default function InsightsMock() {
 
         <div>
           <div className="font-mono text-[9.5px] text-text-muted uppercase tracking-wider mb-1.5">
-            who's carrying what
+            who&apos;s carrying what
           </div>
           <div className="space-y-1">
             {team.map((m) => (

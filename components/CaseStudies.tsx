@@ -3,6 +3,7 @@ import PlatformMock from "./mockups/PlatformMock";
 import LeadershipMock from "./mockups/LeadershipMock";
 import MobileMock from "./mockups/MobileMock";
 import PipelineMock from "./mockups/PipelineMock";
+import Reveal from "./Reveal";
 
 type Capability = {
   title: string;
@@ -132,7 +133,7 @@ function FeaturedCard() {
               ))}
             </div>
           </div>
-          <div className="lg:col-span-2">
+          <div aria-hidden="true" className="lg:col-span-2">
             <TerminalMock />
           </div>
         </div>
@@ -153,7 +154,7 @@ function Card({ c }: { c: Capability }) {
       <h3 className="text-xl font-semibold tracking-tight mb-4 leading-snug group-hover:text-accent transition-colors">
         {c.title}
       </h3>
-      <div className="mb-5">
+      <div aria-hidden="true" className="mb-5">
         <Mock />
       </div>
       <div className="space-y-3 text-sm text-text-secondary leading-relaxed">
@@ -192,22 +193,26 @@ function Card({ c }: { c: Capability }) {
 
 export default function CaseStudies() {
   return (
-    <section id="work" className="relative border-t border-border">
+    <section id="work" aria-labelledby="work-heading" className="relative border-t border-border">
       <div className="max-w-5xl mx-auto px-6 py-24 md:py-32">
-        <div className="mb-12">
+        <Reveal className="mb-12">
           <div className="font-mono text-xs text-accent mb-3 tracking-wider">
             02 / WHAT WE DO
           </div>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+          <h2 id="work-heading" className="text-3xl md:text-4xl font-semibold tracking-tight">
             How we help.
           </h2>
-        </div>
+        </Reveal>
 
-        <FeaturedCard />
+        <Reveal>
+          <FeaturedCard />
+        </Reveal>
 
         <div className="grid md:grid-cols-2 gap-5">
-          {capabilities.map((c) => (
-            <Card key={c.title} c={c} />
+          {capabilities.map((c, i) => (
+            <Reveal key={c.title} delayMs={i * 100}>
+              <Card c={c} />
+            </Reveal>
           ))}
         </div>
       </div>

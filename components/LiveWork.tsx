@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Reveal from "./Reveal";
 
 type Project = {
   name: string;
@@ -37,6 +38,17 @@ const projects: Project[] = [
     stack: ["Next.js", "Provider APIs", "GitHub App"],
     status: "Live · Waitlist",
   },
+  {
+    name: "Chan True Dream",
+    tagline: "Bilingual crochet-guide storefront with a full admin CMS, shipped in a day.",
+    business:
+      "A solo crochet instructor needed a real storefront for her free and paid pattern guides — bilingual (Hebrew/English, full RTL) — with no engineer on call to run it. Built a Postgres-backed CMS with full edit history and one-click revert: she updates text, images, guide links, and contact info herself, from a browser. Zero monthly cost on Vercel + Neon + Blob free tiers.",
+    href: "https://chan-true-dream-portfolio.vercel.app",
+    repoHref: "https://github.com/dbfullstack/chan-true-dream-portfolio",
+    image: "/work/chan-true-dream.png",
+    stack: ["Next.js 16", "PostgreSQL", "RTL i18n", "Admin CMS"],
+    status: "Live",
+  },
 ];
 
 function Shot({ src, alt }: { src: string; alt: string }) {
@@ -60,14 +72,15 @@ function Shot({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-function ProjectCard({ p, featured }: { p: Project; featured?: boolean }) {
+function ProjectCard({ p, featured, delayMs }: { p: Project; featured?: boolean; delayMs?: number }) {
   return (
-    <a
-      href={p.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`group card overflow-hidden p-0 ${featured ? "md:col-span-2" : ""}`}
-    >
+    <Reveal delayMs={delayMs} className={featured ? "md:col-span-2" : ""}>
+      <a
+        href={p.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group card overflow-hidden p-0 block"
+      >
       <div className="p-4 pb-0">
         <Shot src={p.image} alt={`${p.name} live screenshot`} />
       </div>
@@ -117,7 +130,8 @@ function ProjectCard({ p, featured }: { p: Project; featured?: boolean }) {
           </span>
         )}
       </div>
-    </a>
+      </a>
+    </Reveal>
   );
 }
 
@@ -141,7 +155,7 @@ export default function LiveWork() {
 
         <div className="grid gap-5 md:grid-cols-2">
           {projects.map((p, i) => (
-            <ProjectCard key={p.name} p={p} featured={i === 0} />
+            <ProjectCard key={p.name} p={p} featured={i === 0} delayMs={i * 100} />
           ))}
         </div>
       </div>

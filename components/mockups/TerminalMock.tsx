@@ -35,7 +35,7 @@ export default function TerminalMock() {
           </div>
           <div className="text-text-secondary text-xs">
             New health check hits a billable endpoint. At 60s × 24h × 3 envs
-            you'd burn 4,320 paid calls/day. Switch to a free status route.
+            you&apos;d burn 4,320 paid calls/day. Switch to a free status route.
           </div>
         </div>
 

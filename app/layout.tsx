@@ -1,5 +1,20 @@
 import type { Metadata } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import SiteChrome from "@/components/motion/SiteChrome";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
 
 const siteUrl = "https://davidbiton.vercel.app";
 const title = "DB Studio — Engineering, AI, and load-bearing software";
@@ -41,20 +56,16 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin=""
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body>{children}</body>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <body>
+        <a
+          href="#main-content"
+          className="fixed left-4 top-4 z-[1000] -translate-y-24 rounded-lg bg-accent px-4 py-2 font-mono text-sm font-semibold text-bg transition-transform focus:translate-y-0"
+        >
+          Skip to content
+        </a>
+        <SiteChrome>{children}</SiteChrome>
+      </body>
     </html>
   );
 }
