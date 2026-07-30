@@ -186,7 +186,7 @@ export default function Products() {
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div className="md:col-span-1">
             <div className="font-mono text-xs text-accent mb-3 tracking-wider">
-              03 / STUDIO
+              04 / STUDIO
             </div>
             <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
               What we're shipping.

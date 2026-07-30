@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import CaseStudies from "@/components/CaseStudies";
+import LiveWork from "@/components/LiveWork";
 import Products from "@/components/Products";
 import Stack from "@/components/Stack";
 import Contact from "@/components/Contact";
@@ -15,6 +16,7 @@ export default function Home() {
         <Hero />
         <About />
         <CaseStudies />
+        <LiveWork />
         <Products />
         <Stack />
         <Contact />
