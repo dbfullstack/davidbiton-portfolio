@@ -2,54 +2,83 @@
 
 import { useState } from "react";
 
-type Highlight = { label: string; tag: string; href: string; external?: boolean };
+type Highlight = {
+  label: string;
+  tag: string;
+  href: string;
+  icon: string;
+  external?: boolean;
+  live?: boolean;
+};
 
 // Live projects here mirror the entries in LiveWork.tsx (same hrefs) — this
 // strip is a quick-launch reel, not the only place this content lives.
 const highlights: Highlight[] = [
-  { label: "AIRCC Portal", tag: "bilingual grant-program portal", href: "https://aircc-portal.vercel.app", external: true },
-  { label: "Flagscope", tag: "feature-flag debt scanner", href: "https://flagscope.vercel.app", external: true },
-  { label: "Chan True Dream", tag: "shipped in a day", href: "https://chan-true-dream-portfolio.vercel.app", external: true },
-  { label: "Let's talk", tag: "start a project →", href: "#contact" },
+  {
+    label: "AIRCC Portal",
+    tag: "bilingual grant-program portal",
+    href: "https://aircc-portal.vercel.app",
+    icon: "AC",
+    external: true,
+    live: true,
+  },
+  {
+    label: "Flagscope",
+    tag: "feature-flag debt scanner",
+    href: "https://flagscope.vercel.app",
+    icon: "FS",
+    external: true,
+    live: true,
+  },
+  {
+    label: "Chan True Dream",
+    tag: "shipped in a day",
+    href: "https://chan-true-dream-portfolio.vercel.app",
+    icon: "CD",
+    external: true,
+    live: true,
+  },
+  { label: "Let's talk", tag: "start a project →", href: "#contact", icon: "→" },
 ];
 
-function Card({
-  h,
-  interactive,
-}: {
-  h: Highlight;
-  interactive: boolean;
-}) {
+function Card({ h, hidden }: { h: Highlight; hidden: boolean }) {
   const isCta = h.href === "#contact";
-  const className = `card flex shrink-0 flex-col gap-1.5 px-6 py-5 w-64 transition-colors ${
-    isCta ? "border-accent/40 bg-accent/5 hover:bg-accent/10" : "hover:border-border-strong"
-  } ${interactive ? "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg" : ""}`;
-
-  const content = (
-    <>
-      <div className={`font-semibold tracking-tight ${isCta ? "text-accent" : "text-text-primary"}`}>
-        {h.label}
-      </div>
-      <div className="font-mono text-xs text-text-muted">{h.tag}</div>
-    </>
-  );
-
-  if (!interactive) {
-    return (
-      <div aria-hidden="true" tabIndex={-1} className={className}>
-        {content}
-      </div>
-    );
-  }
 
   return (
     <a
       href={h.href}
       target={h.external ? "_blank" : undefined}
       rel={h.external ? "noopener noreferrer" : undefined}
-      className={className}
+      aria-hidden={hidden || undefined}
+      tabIndex={hidden ? -1 : undefined}
+      className={`card group flex shrink-0 flex-col gap-3 px-6 py-5 w-64 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${
+        isCta ? "border-accent/40 bg-accent/5 hover:bg-accent/10" : "hover:border-border-strong"
+      }`}
     >
-      {content}
+      <div className="flex items-center justify-between">
+        <div
+          aria-hidden="true"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-bg-elevated"
+        >
+          <span className="gradient-text font-mono text-[11px] font-bold">{h.icon}</span>
+        </div>
+        {h.live && (
+          <span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-green-400">
+            <span aria-hidden="true" className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 pulse-dot" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-400" />
+            </span>
+            Live
+          </span>
+        )}
+      </div>
+
+      <div>
+        <div className={`font-semibold tracking-tight ${isCta ? "text-accent" : "text-text-primary"}`}>
+          {h.label}
+        </div>
+        <div className="font-mono text-xs text-text-muted mt-1">{h.tag}</div>
+      </div>
     </a>
   );
 }
@@ -61,10 +90,10 @@ export default function RollingCards() {
     <section aria-label="Live projects — view directly" className="relative border-t border-border py-10 overflow-hidden">
       <div className={`marquee-track flex gap-4 ${paused ? "marquee-paused" : ""}`}>
         {highlights.map((h) => (
-          <Card key={`real-${h.label}`} h={h} interactive />
+          <Card key={`real-${h.label}`} h={h} hidden={false} />
         ))}
         {highlights.map((h) => (
-          <Card key={`dup-${h.label}`} h={h} interactive={false} />
+          <Card key={`dup-${h.label}`} h={h} hidden />
         ))}
       </div>
 
