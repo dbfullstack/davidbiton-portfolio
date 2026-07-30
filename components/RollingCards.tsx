@@ -2,32 +2,56 @@
 
 import { useState } from "react";
 
-type Highlight = { label: string; tag: string };
+type Highlight = { label: string; tag: string; href: string };
 
-// Every item here restates something covered in full, fully-accessible
-// detail further down the page (About/CaseStudies/LiveWork/Products/Stack)
-// — this strip is a decorative highlight reel, not a place unique content
-// lives, which is what keeps the aria-hidden marquee track below safe.
+// Every item here also appears in full, static, fully-accessible detail
+// further down the page (About/CaseStudies/LiveWork/Products/Stack) — this
+// strip is a quick-jump highlight reel, not the only place this content lives.
 const highlights: Highlight[] = [
-  { label: "AI Engineering", tag: "Claude Code · agent design" },
-  { label: "Fractional EM", tag: "engineering leadership" },
-  { label: "Backend Architecture", tag: "TypeScript · NestJS · Kafka" },
-  { label: "Mobile SDK Direction", tag: "iOS · Android · Flutter" },
-  { label: "Flagscope", tag: "live product" },
-  { label: "DevHub", tag: "engineering intelligence" },
-  { label: "Chan True Dream", tag: "shipped in a day" },
-  { label: "Automate", tag: "AI as real leverage" },
+  { label: "AI Engineering", tag: "Claude Code · agent design", href: "#work" },
+  { label: "Fractional EM", tag: "engineering leadership", href: "#about" },
+  { label: "Backend Architecture", tag: "TypeScript · NestJS · Kafka", href: "#work" },
+  { label: "Mobile SDK Direction", tag: "iOS · Android · Flutter", href: "#stack" },
+  { label: "Flagscope", tag: "live product", href: "#products" },
+  { label: "DevHub", tag: "engineering intelligence", href: "#products" },
+  { label: "Chan True Dream", tag: "shipped in a day", href: "#live-work" },
+  { label: "Automate", tag: "AI as real leverage", href: "#about" },
+  { label: "Let's talk", tag: "start a project →", href: "#contact" },
 ];
 
-function Card({ h }: { h: Highlight }) {
-  return (
-    <div
-      tabIndex={-1}
-      className="card flex shrink-0 flex-col gap-1.5 px-6 py-5 w-64"
-    >
-      <div className="font-semibold text-text-primary tracking-tight">{h.label}</div>
+function Card({
+  h,
+  interactive,
+}: {
+  h: Highlight;
+  interactive: boolean;
+}) {
+  const isCta = h.href === "#contact";
+  const className = `card flex shrink-0 flex-col gap-1.5 px-6 py-5 w-64 transition-colors ${
+    isCta ? "border-accent/40 bg-accent/5 hover:bg-accent/10" : "hover:border-border-strong"
+  } ${interactive ? "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg" : ""}`;
+
+  const content = (
+    <>
+      <div className={`font-semibold tracking-tight ${isCta ? "text-accent" : "text-text-primary"}`}>
+        {h.label}
+      </div>
       <div className="font-mono text-xs text-text-muted">{h.tag}</div>
-    </div>
+    </>
+  );
+
+  if (!interactive) {
+    return (
+      <div aria-hidden="true" tabIndex={-1} className={className}>
+        {content}
+      </div>
+    );
+  }
+
+  return (
+    <a href={h.href} className={className}>
+      {content}
+    </a>
   );
 }
 
@@ -35,19 +59,13 @@ export default function RollingCards() {
   const [paused, setPaused] = useState(false);
 
   return (
-    <section className="relative border-t border-border py-10 overflow-hidden">
-      <span className="sr-only">
-        Highlights: AI engineering, fractional engineering management, backend
-        architecture, mobile SDK direction, and live products — see full
-        details in the sections below.
-      </span>
-
-      <div
-        aria-hidden="true"
-        className={`marquee-track flex gap-4 ${paused ? "marquee-paused" : ""}`}
-      >
-        {[...highlights, ...highlights].map((h, i) => (
-          <Card key={`${h.label}-${i}`} h={h} />
+    <section aria-label="Highlights — jump to a section" className="relative border-t border-border py-10 overflow-hidden">
+      <div className={`marquee-track flex gap-4 ${paused ? "marquee-paused" : ""}`}>
+        {highlights.map((h) => (
+          <Card key={`real-${h.label}`} h={h} interactive />
+        ))}
+        {highlights.map((h) => (
+          <Card key={`dup-${h.label}`} h={h} interactive={false} />
         ))}
       </div>
 

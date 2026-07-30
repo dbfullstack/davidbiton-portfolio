@@ -106,6 +106,22 @@ export async function POST(req: NextRequest) {
         reply.error,
       );
     }
+
+    // Best-effort lead record — persisted in Resend's own Contacts list
+    // (resend.com/contacts), independent of the notification email, so a
+    // missed/deleted email doesn't mean the lead is gone. Not fatal if it
+    // fails (e.g. this email is already a contact).
+    const contact = await resend.contacts
+      .create({
+        email: from,
+        firstName: name,
+        properties: { lastMessage: message.slice(0, 500), source: "davidbiton.dev contact form" },
+      })
+      .catch((error: unknown) => ({ error }));
+
+    if (contact && "error" in contact && contact.error) {
+      console.warn("[contact] Could not save lead to Resend Contacts:", contact.error);
+    }
   }
 
   return NextResponse.json({ ok: true });
