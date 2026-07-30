@@ -2,20 +2,14 @@
 
 import { useState } from "react";
 
-type Highlight = { label: string; tag: string; href: string };
+type Highlight = { label: string; tag: string; href: string; external?: boolean };
 
-// Every item here also appears in full, static, fully-accessible detail
-// further down the page (About/CaseStudies/LiveWork/Products/Stack) — this
-// strip is a quick-jump highlight reel, not the only place this content lives.
+// Live projects here mirror the entries in LiveWork.tsx (same hrefs) — this
+// strip is a quick-launch reel, not the only place this content lives.
 const highlights: Highlight[] = [
-  { label: "AI Engineering", tag: "Claude Code · agent design", href: "#work" },
-  { label: "Fractional EM", tag: "engineering leadership", href: "#about" },
-  { label: "Backend Architecture", tag: "TypeScript · NestJS · Kafka", href: "#work" },
-  { label: "Mobile SDK Direction", tag: "iOS · Android · Flutter", href: "#stack" },
-  { label: "Flagscope", tag: "live product", href: "#products" },
-  { label: "DevHub", tag: "engineering intelligence", href: "#products" },
-  { label: "Chan True Dream", tag: "shipped in a day", href: "#live-work" },
-  { label: "Automate", tag: "AI as real leverage", href: "#about" },
+  { label: "AIRCC Portal", tag: "bilingual grant-program portal", href: "https://aircc-portal.vercel.app", external: true },
+  { label: "Flagscope", tag: "feature-flag debt scanner", href: "https://flagscope.vercel.app", external: true },
+  { label: "Chan True Dream", tag: "shipped in a day", href: "https://chan-true-dream-portfolio.vercel.app", external: true },
   { label: "Let's talk", tag: "start a project →", href: "#contact" },
 ];
 
@@ -49,7 +43,12 @@ function Card({
   }
 
   return (
-    <a href={h.href} className={className}>
+    <a
+      href={h.href}
+      target={h.external ? "_blank" : undefined}
+      rel={h.external ? "noopener noreferrer" : undefined}
+      className={className}
+    >
       {content}
     </a>
   );
@@ -59,7 +58,7 @@ export default function RollingCards() {
   const [paused, setPaused] = useState(false);
 
   return (
-    <section aria-label="Highlights — jump to a section" className="relative border-t border-border py-10 overflow-hidden">
+    <section aria-label="Live projects — view directly" className="relative border-t border-border py-10 overflow-hidden">
       <div className={`marquee-track flex gap-4 ${paused ? "marquee-paused" : ""}`}>
         {highlights.map((h) => (
           <Card key={`real-${h.label}`} h={h} interactive />
