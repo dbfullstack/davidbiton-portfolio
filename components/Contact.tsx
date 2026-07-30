@@ -188,7 +188,7 @@ export default function Contact() {
       <div className="relative max-w-5xl mx-auto px-6 py-24 md:py-32">
         <Reveal className="text-center mb-14">
           <div className="font-mono text-xs text-accent mb-3 tracking-wider">
-            06 / CONTACT
+            08 / CONTACT
           </div>
           <h2 id={headingId} className="text-4xl md:text-5xl font-semibold tracking-tight mb-5">
             Have something{" "}
