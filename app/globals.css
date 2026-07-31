@@ -230,3 +230,29 @@ body {
     animation: none;
   }
 }
+
+/* ---------- Dot field ---------- */
+.dot-field {
+  position: absolute;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.dot-field-item {
+  position: absolute;
+  border-radius: 9999px;
+  opacity: 0.15;
+  animation: dot-twinkle ease-in-out infinite;
+}
+
+@keyframes dot-twinkle {
+  0%, 100% { opacity: 0.12; transform: scale(0.7); }
+  50% { opacity: 0.65; transform: scale(1.25); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot-field-item {
+    animation: none;
+    opacity: 0.25;
+  }
+}

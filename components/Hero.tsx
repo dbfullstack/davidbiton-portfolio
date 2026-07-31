@@ -1,9 +1,11 @@
 import Reveal from "./Reveal";
+import DotField from "./DotField";
 
 export default function Hero() {
   return (
     <section aria-labelledby="hero-heading" className="relative overflow-hidden">
       <div aria-hidden="true" className="absolute inset-0 grid-bg opacity-60 pointer-events-none" />
+      <DotField count={36} className="hidden md:block inset-y-0 right-0 w-1/2" />
       <div
         aria-hidden="true"
         className="glow-blob"
