@@ -1,3 +1,6 @@
+"use client";
+
+import { useId, useState } from "react";
 import TerminalMock from "./mockups/TerminalMock";
 import PlatformMock from "./mockups/PlatformMock";
 import LeadershipMock from "./mockups/LeadershipMock";
@@ -142,52 +145,89 @@ function FeaturedCard() {
   );
 }
 
-function Card({ c }: { c: Capability }) {
+function CapabilityTabs() {
+  const [active, setActive] = useState(0);
+  const baseId = useId();
+  const c = capabilities[active];
   const { Mock } = c;
+
   return (
-    <article className="card p-6 group">
-      <div className="mb-4">
-        <span className="font-mono text-xs text-accent tracking-wider uppercase">
-          {c.tag}
-        </span>
+    <div>
+      <div role="tablist" aria-label="Capabilities" className="flex flex-wrap gap-2 mb-6">
+        {capabilities.map((cap, i) => {
+          const selected = i === active;
+          return (
+            <button
+              key={cap.title}
+              type="button"
+              role="tab"
+              id={`${baseId}-tab-${i}`}
+              aria-selected={selected}
+              aria-controls={`${baseId}-panel-${i}`}
+              onClick={() => setActive(i)}
+              className={`rounded-full border px-4 py-2 font-mono text-xs tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${
+                selected
+                  ? "border-accent/40 bg-accent/10 text-accent"
+                  : "border-border text-text-secondary hover:border-border-strong hover:text-text-primary"
+              }`}
+            >
+              {cap.title}
+            </button>
+          );
+        })}
       </div>
-      <h3 className="text-xl font-semibold tracking-tight mb-4 leading-snug group-hover:text-accent transition-colors">
-        {c.title}
-      </h3>
-      <div aria-hidden="true" className="mb-5">
-        <Mock />
-      </div>
-      <div className="space-y-3 text-sm text-text-secondary leading-relaxed">
-        <p>
-          <span className="text-text-muted font-mono text-[11px] uppercase tracking-wider block mb-1">
-            Why teams hire us
-          </span>
-          {c.pitch}
-        </p>
-        <p>
-          <span className="text-text-muted font-mono text-[11px] uppercase tracking-wider block mb-1">
-            What we do
-          </span>
-          {c.what}
-        </p>
-        <p>
-          <span className="text-text-muted font-mono text-[11px] uppercase tracking-wider block mb-1">
-            Outcome
-          </span>
-          {c.outcome}
-        </p>
-      </div>
-      <div className="mt-5 pt-5 border-t border-border flex flex-wrap gap-2">
-        {c.stack.map((s) => (
-          <span
-            key={s}
-            className="font-mono text-xs px-2 py-1 bg-bg border border-border rounded text-text-secondary"
-          >
-            {s}
-          </span>
-        ))}
-      </div>
-    </article>
+
+      <article
+        id={`${baseId}-panel-${active}`}
+        role="tabpanel"
+        aria-labelledby={`${baseId}-tab-${active}`}
+        className="card p-6 md:p-8"
+      >
+        <div className="grid md:grid-cols-5 gap-8 items-start">
+          <div className="md:col-span-3">
+            <span className="font-mono text-xs text-accent tracking-wider uppercase">
+              {c.tag}
+            </span>
+            <h3 className="text-2xl font-semibold tracking-tight my-4 leading-snug">
+              {c.title}
+            </h3>
+            <div className="space-y-3 text-sm text-text-secondary leading-relaxed">
+              <p>
+                <span className="text-text-muted font-mono text-[11px] uppercase tracking-wider block mb-1">
+                  Why teams hire us
+                </span>
+                {c.pitch}
+              </p>
+              <p>
+                <span className="text-text-muted font-mono text-[11px] uppercase tracking-wider block mb-1">
+                  What we do
+                </span>
+                {c.what}
+              </p>
+              <p>
+                <span className="text-text-muted font-mono text-[11px] uppercase tracking-wider block mb-1">
+                  Outcome
+                </span>
+                {c.outcome}
+              </p>
+            </div>
+            <div className="mt-5 pt-5 border-t border-border flex flex-wrap gap-2">
+              {c.stack.map((s) => (
+                <span
+                  key={s}
+                  className="font-mono text-xs px-2 py-1 bg-bg border border-border rounded text-text-secondary"
+                >
+                  {s}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div aria-hidden="true" className="md:col-span-2">
+            <Mock />
+          </div>
+        </div>
+      </article>
+    </div>
   );
 }
 
@@ -208,13 +248,9 @@ export default function CaseStudies() {
           <FeaturedCard />
         </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-5">
-          {capabilities.map((c, i) => (
-            <Reveal key={c.title} delayMs={i * 100}>
-              <Card c={c} />
-            </Reveal>
-          ))}
-        </div>
+        <Reveal>
+          <CapabilityTabs />
+        </Reveal>
       </div>
     </section>
   );
