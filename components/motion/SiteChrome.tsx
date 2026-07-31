@@ -4,6 +4,7 @@ import { ReactLenis } from "lenis/react";
 import { useMediaQuery } from "./useMediaQuery";
 import BootSequence from "./BootSequence";
 import CustomCursor from "./CustomCursor";
+import ScrollToTop from "./ScrollToTop";
 
 export default function SiteChrome({ children }: { children: React.ReactNode }) {
   const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
@@ -23,6 +24,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
       <BootSequence />
       <CustomCursor />
       {children}
+      <ScrollToTop />
     </ReactLenis>
   );
 }
