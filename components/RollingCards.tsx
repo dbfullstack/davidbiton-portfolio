@@ -7,35 +7,39 @@ type Highlight = {
   tag: string;
   href: string;
   icon: string;
-  external?: boolean;
+  iconSrc?: string;
   live?: boolean;
 };
 
 // Live projects here mirror the entries in LiveWork.tsx (same hrefs) — this
 // strip is a quick-launch reel, not the only place this content lives.
+// iconSrc pulls each project's own icon file directly (confirmed from its
+// repo) rather than a third-party favicon lookup, which falls back to a
+// generic globe for freshly-deployed .vercel.app subdomains it hasn't
+// crawled yet.
 const highlights: Highlight[] = [
   {
     label: "AIRCC Portal",
     tag: "bilingual grant-program portal",
     href: "https://aircc-portal.vercel.app",
+    iconSrc: "https://aircc-portal.vercel.app/favicon.svg",
     icon: "AC",
-    external: true,
     live: true,
   },
   {
     label: "Flagscope",
     tag: "feature-flag debt scanner",
     href: "https://flagscope.vercel.app",
+    iconSrc: "https://flagscope.vercel.app/icon.svg",
     icon: "FS",
-    external: true,
     live: true,
   },
   {
     label: "Chan True Dream",
     tag: "shipped in a day",
     href: "https://chan-true-dream-portfolio.vercel.app",
+    iconSrc: "https://chan-true-dream-portfolio.vercel.app/icon.svg",
     icon: "CD",
-    external: true,
     live: true,
   },
   { label: "Let's talk", tag: "start a project →", href: "#contact", icon: "→" },
@@ -44,16 +48,15 @@ const highlights: Highlight[] = [
 function SiteIcon({ h }: { h: Highlight }) {
   const [failed, setFailed] = useState(false);
 
-  if (h.external && !failed) {
-    const faviconUrl = `https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(h.href)}`;
+  if (h.iconSrc && !failed) {
     return (
       <div aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-bg-elevated overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element -- tiny external favicon, not worth Next's image pipeline */}
+        {/* eslint-disable-next-line @next/next/no-img-element -- tiny external icon, not worth Next's image pipeline */}
         <img
-          src={faviconUrl}
+          src={h.iconSrc}
           alt=""
-          width={20}
-          height={20}
+          width={32}
+          height={32}
           onError={() => setFailed(true)}
         />
       </div>
@@ -69,12 +72,13 @@ function SiteIcon({ h }: { h: Highlight }) {
 
 function Card({ h, hidden }: { h: Highlight; hidden: boolean }) {
   const isCta = h.href === "#contact";
+  const isExternal = h.href.startsWith("http");
 
   return (
     <a
       href={h.href}
-      target={h.external ? "_blank" : undefined}
-      rel={h.external ? "noopener noreferrer" : undefined}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
       aria-hidden={hidden || undefined}
       tabIndex={hidden ? -1 : undefined}
       className={`card group flex shrink-0 flex-col gap-3 px-6 py-5 w-64 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${
