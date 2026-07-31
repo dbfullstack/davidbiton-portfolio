@@ -41,6 +41,32 @@ const highlights: Highlight[] = [
   { label: "Let's talk", tag: "start a project →", href: "#contact", icon: "→" },
 ];
 
+function SiteIcon({ h }: { h: Highlight }) {
+  const [failed, setFailed] = useState(false);
+
+  if (h.external && !failed) {
+    const faviconUrl = `https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(h.href)}`;
+    return (
+      <div aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-bg-elevated overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element -- tiny external favicon, not worth Next's image pipeline */}
+        <img
+          src={faviconUrl}
+          alt=""
+          width={20}
+          height={20}
+          onError={() => setFailed(true)}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-bg-elevated">
+      <span className="gradient-text font-mono text-[11px] font-bold">{h.icon}</span>
+    </div>
+  );
+}
+
 function Card({ h, hidden }: { h: Highlight; hidden: boolean }) {
   const isCta = h.href === "#contact";
 
@@ -56,12 +82,7 @@ function Card({ h, hidden }: { h: Highlight; hidden: boolean }) {
       }`}
     >
       <div className="flex items-center justify-between">
-        <div
-          aria-hidden="true"
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-bg-elevated"
-        >
-          <span className="gradient-text font-mono text-[11px] font-bold">{h.icon}</span>
-        </div>
+        <SiteIcon h={h} />
         {h.live && (
           <span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-green-400">
             <span aria-hidden="true" className="relative flex h-1.5 w-1.5">
