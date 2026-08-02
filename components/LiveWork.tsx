@@ -32,7 +32,7 @@ const projects: Project[] = [
     name: "Flagscope",
     tagline: "Multi-provider feature-flag debt scanner with one-click cleanup PRs.",
     business:
-      "Connects LaunchDarkly, Flagsmith, Statsig, and Unleash; finds stale and ownerless flags before they rot into incidents, and opens the cleanup PR automatically instead of leaving it as a backlog ticket nobody picks up.",
+      "Connects LaunchDarkly, Flagsmith, Statsig, Unleash, GrowthBook, and ConfigCat; finds stale and ownerless flags before they rot into incidents, and opens the cleanup PR automatically instead of leaving it as a backlog ticket nobody picks up.",
     href: "https://flagscope.vercel.app",
     image: "/work/flagscope.png",
     stack: ["Next.js", "Provider APIs", "GitHub App"],

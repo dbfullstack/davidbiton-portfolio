@@ -83,12 +83,12 @@ function FeaturedFlagscope() {
               Kill flag debt. Multi-provider feature flag governance.
             </p>
             <p className="text-sm text-text-secondary leading-relaxed mb-6">
-              Connects to LaunchDarkly, Flagsmith, Statsig and Unleash. Finds
-              stale flags, ownerless flags, dead branches. Opens the cleanup PR
-              for you. Landing live; beta opens early 2026.
+              Connects to LaunchDarkly, Flagsmith, Statsig, Unleash, GrowthBook,
+              and ConfigCat. Finds stale flags, ownerless flags, dead branches.
+              Opens the cleanup PR for you. Landing live; beta opens early 2026.
             </p>
             <div className="flex flex-wrap gap-2 mb-6">
-              {["LaunchDarkly", "Flagsmith", "Statsig", "Unleash"].map((p) => (
+              {["LaunchDarkly", "Flagsmith", "Statsig", "Unleash", "GrowthBook", "ConfigCat"].map((p) => (
                 <span
                   key={p}
                   className="font-mono text-xs px-2.5 py-1 bg-bg border border-border rounded text-text-secondary"
