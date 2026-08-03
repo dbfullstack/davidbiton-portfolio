@@ -28,6 +28,17 @@ const projects: Project[] = [
     status: "Landing live",
   },
   {
+    name: "Hirescope",
+    tagline:
+      "AI resume builder with real ATS scoring, a drag-and-drop section builder, application tracking, and personal insights.",
+    business:
+      "Resume.io and Zety sell templates; Teal scores against a job description but stops there; LazyApply and Simplify auto-apply by scripting LinkedIn/Indeed, which sits in a ToS grey zone. This closes the loop the other way: Claude-powered ATS scoring (matched/missing keywords, phrasing suggestions) backed by a free local keyword scorer for instant feedback while editing, a drag-and-drop resume builder that renders the same section order to PDF and DOCX, real Greenhouse/Lever job search via their public APIs, and a tracker tied to which resume version was actually used. LinkedIn/Indeed stay deep-link search only — no bot-driven auto-apply — a deliberate line, not a missing feature.",
+    href: "https://hirescope-iota.vercel.app",
+    image: "/work/hirescope.png",
+    stack: ["Next.js 16", "Supabase", "Stripe", "Claude API"],
+    status: "Frontend live",
+  },
+  {
     name: "AIRCC Portal",
     tagline:
       "Bilingual (Hebrew/English) portal rebuild for a subsidized-GPU research grant program.",

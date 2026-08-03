@@ -27,6 +27,14 @@ const highlights: Highlight[] = [
     live: true,
   },
   {
+    label: "Hirescope",
+    tag: "AI resume builder + ATS scoring",
+    href: "https://hirescope-iota.vercel.app",
+    iconSrc: "https://hirescope-iota.vercel.app/icon.svg",
+    icon: "HS",
+    live: true,
+  },
+  {
     label: "AIRCC Portal",
     tag: "bilingual grant-program portal",
     href: "https://aircc-portal.vercel.app",
