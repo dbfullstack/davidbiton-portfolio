@@ -17,6 +17,17 @@ type Project = {
 
 const projects: Project[] = [
   {
+    name: "DevHub",
+    tagline:
+      "Self-hostable engineering dashboard — repos, PRs, and sprints unified, with AI grounded in real delivery data.",
+    business:
+      "The biggest thing in the studio: a self-hostable, white-label alternative to Backstage/Cortex/Faros — same category of control, without the six-month build or the six-figure SaaS contract. The positioning site below is live; the full product is the next build.",
+    href: "https://devhub-landing.vercel.app",
+    image: "/work/devhub.png",
+    stack: ["Next.js 16", "GitHub + Azure DevOps", "AI-native"],
+    status: "Landing live",
+  },
+  {
     name: "AIRCC Portal",
     tagline:
       "Bilingual (Hebrew/English) portal rebuild for a subsidized-GPU research grant program.",

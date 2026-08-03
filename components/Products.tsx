@@ -18,11 +18,12 @@ type Product = {
 const upcoming: Product[] = [
   {
     codename: "DevHub",
-    tagline: "One dashboard for repos, sprints, releases, and ops — AI-native.",
+    tagline: "One dashboard for repos, PRs, and sprints — AI-native, self-hostable.",
     description:
-      "Self-hostable engineering dashboard that unifies GitHub or Azure DevOps, sprints, releases, and monitoring into one pane of glass, with AI grounded in the actual indexed codebase — chat, PR review, and drafted tickets, not just charts. Self-hosted or hosted, either way.",
-    status: "Building",
+      "Self-hostable engineering dashboard that unifies GitHub or Azure DevOps repos, PRs, and sprints into one pane of glass, with AI grounded in your real delivery data. Backstage-level control without the six-month build. Landing page live — product build is next.",
+    status: "Live · Waitlist",
     category: "AI · dev tools",
+    href: "https://devhub-landing.vercel.app",
     Mock: DevHubMock,
   },
   {

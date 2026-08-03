@@ -19,6 +19,14 @@ type Highlight = {
 // crawled yet.
 const highlights: Highlight[] = [
   {
+    label: "DevHub",
+    tag: "self-hostable engineering dashboard",
+    href: "https://devhub-landing.vercel.app",
+    iconSrc: "https://devhub-landing.vercel.app/icon.svg",
+    icon: "DH",
+    live: true,
+  },
+  {
     label: "AIRCC Portal",
     tag: "bilingual grant-program portal",
     href: "https://aircc-portal.vercel.app",
