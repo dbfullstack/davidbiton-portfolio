@@ -1,15 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import { notifyTemplate, autoReplyTemplate } from "./templates";
 
 export const runtime = "nodejs";
 
-const TO_EMAIL = "davidbitonfullstack@gmail.com";
-// Swap for a verified custom-domain sender (e.g. "DB Studio <hello@davidbiton.dev>")
-// once a domain is verified in Resend. Until then, Resend's shared sender can
-// only deliver to the account's own verified address — see the best-effort
-// auto-reply handling below.
-const FROM = "DB Studio <onboarding@resend.dev>";
+const GMAIL_USER = "davidbitonfullstack@gmail.com";
+const TO_EMAIL = GMAIL_USER;
+const FROM = `DB Studio <${GMAIL_USER}>`;
 
 type Payload = { name: string; from?: string; message: string; company?: string };
 
@@ -26,6 +23,17 @@ function parsePayload(body: unknown): Payload | null {
   if (from && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(from)) return null;
 
   return { name, message, from: from || undefined, company };
+}
+
+function getTransport() {
+  const pass = process.env.GMAIL_APP_PASSWORD;
+  if (!pass) return null;
+  return nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: { user: GMAIL_USER, pass },
+  });
 }
 
 export async function POST(req: NextRequest) {
@@ -49,10 +57,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
+  const transport = getTransport();
+  if (!transport) {
     console.error(
-      "[contact] RESEND_API_KEY is not set — add it to .env.local for local dev " +
+      "[contact] GMAIL_APP_PASSWORD is not set — add it to .env.local for local dev " +
         "and to the Vercel project's Environment Variables for production.",
     );
     return NextResponse.json(
@@ -64,19 +72,18 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const resend = new Resend(apiKey);
   const { name, from, message } = payload;
 
-  const notify = await resend.emails.send({
-    from: FROM,
-    to: TO_EMAIL,
-    replyTo: from,
-    subject: `New inquiry from ${name}`,
-    html: notifyTemplate({ name, from, message }),
-  });
-
-  if (notify.error) {
-    console.error("[contact] Failed to send lead notification:", notify.error);
+  try {
+    await transport.sendMail({
+      from: FROM,
+      to: TO_EMAIL,
+      replyTo: from,
+      subject: `New inquiry from ${name}`,
+      html: notifyTemplate({ name, from, message }),
+    });
+  } catch (error) {
+    console.error("[contact] Failed to send lead notification:", error);
     return NextResponse.json(
       {
         error: "Couldn't send your message right now — please email davidbitonfullstack@gmail.com directly.",
@@ -85,42 +92,20 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Best-effort auto-reply. Not fatal if it fails — e.g. before a sending
-  // domain is verified in Resend, the shared sender can only deliver to the
-  // account's own address, so replies to third-party visitor emails 403.
-  // The lead notification above already succeeded either way.
+  // Best-effort auto-reply — Gmail SMTP can relay to any recipient (unlike
+  // Resend's sandbox sender), so this isn't restricted to verified addresses.
+  // Still non-fatal if it fails: the lead notification above already
+  // succeeded, which is what actually matters.
   if (from) {
-    const reply = await resend.emails
-      .send({
+    try {
+      await transport.sendMail({
         from: FROM,
         to: from,
         subject: "Got your message — DB Studio",
         html: autoReplyTemplate({ name }),
-      })
-      .catch((error: unknown) => ({ error }));
-
-    if (reply && "error" in reply && reply.error) {
-      console.warn(
-        "[contact] Lead notified, but the visitor auto-reply failed " +
-          "(likely an unverified Resend sending domain):",
-        reply.error,
-      );
-    }
-
-    // Best-effort lead record — persisted in Resend's own Contacts list
-    // (resend.com/contacts), independent of the notification email, so a
-    // missed/deleted email doesn't mean the lead is gone. Not fatal if it
-    // fails (e.g. this email is already a contact).
-    const contact = await resend.contacts
-      .create({
-        email: from,
-        firstName: name,
-        properties: { lastMessage: message.slice(0, 500), source: "davidbiton.dev contact form" },
-      })
-      .catch((error: unknown) => ({ error }));
-
-    if (contact && "error" in contact && contact.error) {
-      console.warn("[contact] Could not save lead to Resend Contacts:", contact.error);
+      });
+    } catch (error) {
+      console.warn("[contact] Lead notified, but the visitor auto-reply failed:", error);
     }
   }
 
