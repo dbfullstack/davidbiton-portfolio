@@ -51,6 +51,14 @@ const highlights: Highlight[] = [
     live: true,
   },
   {
+    label: "Claro",
+    tag: "personal finance management",
+    href: "https://claro-dbfullstacks-projects.vercel.app",
+    iconSrc: "https://claro-dbfullstacks-projects.vercel.app/favicon.ico",
+    icon: "CL",
+    live: true,
+  },
+  {
     label: "Chan True Dream",
     tag: "shipped in a day",
     href: "https://chan-true-dream-portfolio.vercel.app",
