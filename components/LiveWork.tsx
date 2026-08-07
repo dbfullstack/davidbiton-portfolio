@@ -61,6 +61,18 @@ const projects: Project[] = [
     status: "Live · Waitlist",
   },
   {
+    name: "Claro",
+    tagline:
+      "Personal finance management app with AI-powered insights, budget tracking, and financial goal management.",
+    business:
+      "Full-stack budgeting app: transaction tracking, credit-card and goal management, and AI-generated spending insights, with strong account security (rate limiting, entropy-scored passwords, duplicate-email protection). React frontend on Vercel, Node/Express API on Railway.",
+    href: "https://claro-dbfullstacks-projects.vercel.app",
+    repoHref: "https://github.com/dbfullstack/claro",
+    image: "/work/claro.png",
+    stack: ["React", "Node.js", "PostgreSQL", "Supabase", "Railway"],
+    status: "Live",
+  },
+  {
     name: "Chan True Dream",
     tagline: "Bilingual crochet-guide storefront with a full admin CMS, shipped in a day.",
     business:
