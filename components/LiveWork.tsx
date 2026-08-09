@@ -126,13 +126,13 @@ function ProjectCard({ p, featured, delayMs }: { p: Project; featured?: boolean;
         rel="noopener noreferrer"
         className="group card overflow-hidden p-0 block"
       >
-      <div className="p-4 pb-0">
+      <div className="p-2 pb-0 md:p-4">
         <Shot src={p.image} alt={`${p.name} live screenshot`} />
       </div>
-      <div className="p-6">
-        <div className="mb-3 flex flex-wrap items-center gap-2">
+      <div className="p-3 md:p-6">
+        <div className="mb-2 flex flex-wrap items-center gap-1.5 md:mb-3 md:gap-2">
           <span
-            className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-wider ${
+            className={`inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider md:px-2.5 md:py-1 md:text-[10.5px] ${
               p.status === "Live · Waitlist"
                 ? "border-green-400/40 bg-green-400/10 text-green-400"
                 : "border-accent-2/40 bg-accent-2/10 text-accent-2"
@@ -148,20 +148,20 @@ function ProjectCard({ p, featured, delayMs }: { p: Project; featured?: boolean;
           {p.stack.map((s) => (
             <span
               key={s}
-              className="rounded border border-border bg-bg px-2 py-1 font-mono text-[10.5px] text-text-secondary"
+              className="hidden rounded border border-border bg-bg px-2 py-1 font-mono text-[10.5px] text-text-secondary md:inline-block"
             >
               {s}
             </span>
           ))}
         </div>
-        <h3 className="mb-1.5 flex items-center gap-2 text-xl font-semibold tracking-tight transition-colors group-hover:text-accent">
+        <h3 className="mb-1 flex items-center gap-1.5 text-sm font-semibold tracking-tight transition-colors group-hover:text-accent md:mb-1.5 md:gap-2 md:text-xl">
           {p.name}
           <span aria-hidden className="text-accent transition-transform group-hover:translate-x-0.5">
             →
           </span>
         </h3>
-        <p className="mb-3 text-sm leading-snug text-text-primary">{p.tagline}</p>
-        <p className="text-sm leading-relaxed text-text-secondary">{p.business}</p>
+        <p className="text-xs leading-snug text-text-primary md:mb-3 md:text-sm">{p.tagline}</p>
+        <p className="hidden text-sm leading-relaxed text-text-secondary md:block">{p.business}</p>
         {p.repoHref && (
           <span
             onClick={(e) => {
@@ -169,7 +169,7 @@ function ProjectCard({ p, featured, delayMs }: { p: Project; featured?: boolean;
               e.stopPropagation();
               window.open(p.repoHref, "_blank", "noopener,noreferrer");
             }}
-            className="mt-4 inline-flex cursor-pointer items-center gap-1.5 font-mono text-xs text-text-muted transition-colors hover:text-accent"
+            className="mt-4 hidden cursor-pointer items-center gap-1.5 font-mono text-xs text-text-muted transition-colors hover:text-accent md:inline-flex"
           >
             View source →
           </span>
@@ -198,7 +198,7 @@ export default function LiveWork() {
           </p>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid grid-cols-2 gap-3 md:gap-5">
           {projects.map((p, i) => (
             <ProjectCard key={p.name} p={p} featured={i === 0} delayMs={i * 100} />
           ))}
