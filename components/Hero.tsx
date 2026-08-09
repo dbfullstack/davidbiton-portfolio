@@ -1,6 +1,9 @@
 import Reveal from "./Reveal";
 import DotField from "./DotField";
 
+const WHATSAPP_HREF =
+  "https://wa.me/972525866390?text=" + encodeURIComponent("Hi David — I'd like to talk about a project.");
+
 export default function Hero() {
   return (
     <section aria-labelledby="hero-heading" className="relative overflow-hidden">
@@ -82,6 +85,17 @@ export default function Hero() {
             className="inline-flex items-center gap-2 border border-border hover:border-text-secondary text-text-primary font-medium px-6 py-3 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
           >
             See what we do
+          </a>
+          <a
+            href={WHATSAPP_HREF}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-text-secondary hover:text-accent font-medium px-2 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded-lg"
+          >
+            or WhatsApp me
+            <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
+              →
+            </span>
           </a>
         </Reveal>
 
