@@ -61,6 +61,17 @@ const projects: Project[] = [
     status: "Live · Waitlist",
   },
   {
+    name: "Orderflow",
+    tagline: "Digital order management connecting retailers, store customers, and suppliers.",
+    business:
+      "Replaces the phone-call-and-spreadsheet order workflow between retailers and suppliers with a shared digital pipeline — retailers place and track orders, suppliers manage fulfillment, and both sides see the same order status in real time instead of chasing it over WhatsApp.",
+    href: "https://orderflow-eight-jade.vercel.app",
+    repoHref: "https://github.com/dbfullstack/orderflow",
+    image: "/work/orderflow.png",
+    stack: ["Next.js 16", "PostgreSQL", "Supabase"],
+    status: "Live",
+  },
+  {
     name: "Claro",
     tagline:
       "Personal finance management app with AI-powered insights, budget tracking, and financial goal management.",

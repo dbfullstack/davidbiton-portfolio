@@ -51,6 +51,14 @@ const highlights: Highlight[] = [
     live: true,
   },
   {
+    label: "Orderflow",
+    tag: "retailer ↔ supplier order management",
+    href: "https://orderflow-eight-jade.vercel.app",
+    iconSrc: "https://orderflow-eight-jade.vercel.app/icon",
+    icon: "OF",
+    live: true,
+  },
+  {
     label: "Claro",
     tag: "personal finance management",
     href: "https://claro-dbfullstacks-projects.vercel.app",
