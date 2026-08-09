@@ -4,8 +4,16 @@ import { useId, useState } from "react";
 import Reveal from "./Reveal";
 
 const EMAIL = "davidbitonfullstack@gmail.com";
+const WHATSAPP_NUMBER = "972525866390";
+const WHATSAPP_MESSAGE = "Hi David — I'd like to talk about a project.";
+const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
 const channels = [
+  {
+    label: "WhatsApp",
+    value: "+972 52-586-6390 · fastest reply",
+    href: WHATSAPP_HREF,
+  },
   {
     label: "Email",
     value: EMAIL,
@@ -152,13 +160,16 @@ function ContactForm() {
 
       <p className="text-xs text-text-muted">
         You&apos;ll get an email confirmation, and I&apos;ll personally reply
-        within 1–2 business days. Prefer email directly?{" "}
+        within 1–2 business days. Want it faster?{" "}
         <a
-          href={`mailto:${EMAIL}`}
+          href={WHATSAPP_HREF}
+          target="_blank"
+          rel="noopener noreferrer"
           className="underline hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
-          {EMAIL}
+          Message me on WhatsApp
         </a>
+        .
       </p>
     </form>
   );

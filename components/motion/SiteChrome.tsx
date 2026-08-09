@@ -5,6 +5,7 @@ import { useMediaQuery } from "./useMediaQuery";
 import BootSequence from "./BootSequence";
 import CustomCursor from "./CustomCursor";
 import ScrollToTop from "./ScrollToTop";
+import WhatsAppButton from "./WhatsAppButton";
 
 export default function SiteChrome({ children }: { children: React.ReactNode }) {
   const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
@@ -25,6 +26,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
       <CustomCursor />
       {children}
       <ScrollToTop />
+      <WhatsAppButton />
     </ReactLenis>
   );
 }
