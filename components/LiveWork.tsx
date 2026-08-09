@@ -119,7 +119,7 @@ function Shot({ src, alt }: { src: string; alt: string }) {
 
 function ProjectCard({ p, featured, delayMs }: { p: Project; featured?: boolean; delayMs?: number }) {
   return (
-    <Reveal delayMs={delayMs} className={featured ? "md:col-span-2" : ""}>
+    <Reveal delayMs={delayMs} className={featured ? "col-span-2" : ""}>
       <a
         href={p.href}
         target="_blank"
@@ -148,20 +148,30 @@ function ProjectCard({ p, featured, delayMs }: { p: Project; featured?: boolean;
           {p.stack.map((s) => (
             <span
               key={s}
-              className="hidden rounded border border-border bg-bg px-2 py-1 font-mono text-[10.5px] text-text-secondary md:inline-block"
+              className={`rounded border border-border bg-bg px-2 py-1 font-mono text-[10.5px] text-text-secondary ${
+                featured ? "inline-block" : "hidden md:inline-block"
+              }`}
             >
               {s}
             </span>
           ))}
         </div>
-        <h3 className="mb-1 flex items-center gap-1.5 text-sm font-semibold tracking-tight transition-colors group-hover:text-accent md:mb-1.5 md:gap-2 md:text-xl">
+        <h3
+          className={`mb-1 flex items-center gap-1.5 font-semibold tracking-tight transition-colors group-hover:text-accent md:mb-1.5 md:gap-2 md:text-xl ${
+            featured ? "text-xl" : "text-sm"
+          }`}
+        >
           {p.name}
           <span aria-hidden className="text-accent transition-transform group-hover:translate-x-0.5">
             →
           </span>
         </h3>
-        <p className="text-xs leading-snug text-text-primary md:mb-3 md:text-sm">{p.tagline}</p>
-        <p className="hidden text-sm leading-relaxed text-text-secondary md:block">{p.business}</p>
+        <p className={`text-xs leading-snug text-text-primary md:mb-3 md:text-sm ${featured ? "mb-3 text-sm" : ""}`}>
+          {p.tagline}
+        </p>
+        <p className={`text-sm leading-relaxed text-text-secondary ${featured ? "block" : "hidden md:block"}`}>
+          {p.business}
+        </p>
         {p.repoHref && (
           <span
             onClick={(e) => {
@@ -169,7 +179,9 @@ function ProjectCard({ p, featured, delayMs }: { p: Project; featured?: boolean;
               e.stopPropagation();
               window.open(p.repoHref, "_blank", "noopener,noreferrer");
             }}
-            className="mt-4 hidden cursor-pointer items-center gap-1.5 font-mono text-xs text-text-muted transition-colors hover:text-accent md:inline-flex"
+            className={`mt-4 cursor-pointer items-center gap-1.5 font-mono text-xs text-text-muted transition-colors hover:text-accent ${
+              featured ? "inline-flex" : "hidden md:inline-flex"
+            }`}
           >
             View source →
           </span>
